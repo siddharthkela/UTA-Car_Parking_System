@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>Functions.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Merged (30 Apr, 2019 8:33:45 AM)</a> &gt; <a href="../../index.html" class="el_group">car_parking_system</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">functions</a> &gt; <span class="el_source">Functions.java</span></div><h1>Functions.java</h1><pre class="source lang-java linenums">package functions;
+import java.util.Properties;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.Select;
+import static org.junit.Assert.*;
+
+<span class="nc" id="L9">public class Functions {</span>
+	 
+	public static WebDriver driver;
+	public static Properties prop;
+	public void Registration(WebDriver driver,String sfirstname, String slastname, String sutaid,
+			String saddress,String susername,String semail,String spassword,String sphone, String sdlnumber,
+	 		String svnumber,String spermit,String suserrole) throws Exception
+	{  
+<span class="nc" id="L17">		driver.findElement(By.id(prop.getProperty(&quot;Txt_Register_FirstName&quot;))).clear(); </span>
+<span class="nc" id="L18">	    driver.findElement(By.id(prop.getProperty(&quot;Txt_Register_FirstName&quot;))).sendKeys(sfirstname);</span>
+<span class="nc" id="L19">	    driver.findElement(By.id(prop.getProperty(&quot;Txt_Register_LastName&quot;))).clear();</span>
+<span class="nc" id="L20">	    driver.findElement(By.id(prop.getProperty(&quot;Txt_Register_LastName&quot;))).sendKeys(slastname);</span>
+<span class="nc" id="L21">	    driver.findElement(By.id(prop.getProperty(&quot;Txt_Register_UtaID&quot;))).clear();</span>
+<span class="nc" id="L22">	    driver.findElement(By.id(prop.getProperty(&quot;Txt_Register_UtaID&quot;))).sendKeys(sutaid);</span>
+<span class="nc" id="L23">	    driver.findElement(By.id(prop.getProperty(&quot;Txt_Register_Address&quot;))).clear();</span>
+<span class="nc" id="L24">	    driver.findElement(By.id(prop.getProperty(&quot;Txt_Register_Address&quot;))).sendKeys(saddress);</span>
+<span class="nc" id="L25">	    driver.findElement(By.id(prop.getProperty(&quot;Txt_Register_UserName&quot;))).clear();</span>
+<span class="nc" id="L26">	    driver.findElement(By.id(prop.getProperty(&quot;Txt_Register_UserName&quot;))).sendKeys(susername);</span>
+<span class="nc" id="L27">	    driver.findElement(By.id(prop.getProperty(&quot;Txt_Register_Email&quot;))).clear();</span>
+<span class="nc" id="L28">	    driver.findElement(By.id(prop.getProperty(&quot;Txt_Register_Email&quot;))).sendKeys(semail);</span>
+<span class="nc" id="L29">	    driver.findElement(By.id(prop.getProperty(&quot;Txt_Register_Password&quot;))).clear();</span>
+<span class="nc" id="L30">	    driver.findElement(By.id(prop.getProperty(&quot;Txt_Register_Password&quot;))).sendKeys(spassword);</span>
+<span class="nc" id="L31">	    driver.findElement(By.id(prop.getProperty(&quot;Txt_Register_Phone&quot;))).clear();</span>
+<span class="nc" id="L32">	    driver.findElement(By.id(prop.getProperty(&quot;Txt_Register_Phone&quot;))).sendKeys(sphone);</span>
+<span class="nc" id="L33">	    driver.findElement(By.id(prop.getProperty(&quot;Txt_Register_Dlnumber&quot;))).clear();</span>
+<span class="nc" id="L34">	    driver.findElement(By.id(prop.getProperty(&quot;Txt_Register_Dlnumber&quot;))).sendKeys(sdlnumber);</span>
+<span class="nc" id="L35">	    driver.findElement(By.name(prop.getProperty(&quot;Txt_Register_Vnumber&quot;))).clear();</span>
+<span class="nc" id="L36">	    driver.findElement(By.name(prop.getProperty(&quot;Txt_Register_Vnumber&quot;))).sendKeys(svnumber);</span>
+<span class="nc" id="L37">	    new Select(driver.findElement(By.name(prop.getProperty(&quot;Lst_Register_Permit&quot;)))).selectByVisibleText(spermit);</span>
+<span class="nc" id="L38">	    new Select(driver.findElement(By.id(prop.getProperty(&quot;Lst_Register_Role&quot;)))).selectByVisibleText(suserrole);</span>
+<span class="nc" id="L39">	    Thread.sleep(3000);</span>
+<span class="nc" id="L40">	    driver.findElement(By.cssSelector(prop.getProperty(&quot;Lnk_Register_Submit&quot;))).click();</span>
+	    
+<span class="nc" id="L42">	} </span>
+	public void Login(WebDriver driver,String susername,String spassword,String sUser) throws InterruptedException
+	{
+<span class="nc" id="L45">		driver.findElement(By.id(prop.getProperty(&quot;Txt_Login_UserName&quot;))).clear();</span>
+<span class="nc" id="L46">	    driver.findElement(By.id(prop.getProperty(&quot;Txt_Login_UserName&quot;))).sendKeys(susername);</span>
+<span class="nc" id="L47">	    driver.findElement(By.id(prop.getProperty(&quot;Txt_Login_Password&quot;))).clear();</span>
+<span class="nc" id="L48">	    driver.findElement(By.id(prop.getProperty(&quot;Txt_Login_Password&quot;))).sendKeys(spassword);</span>
+<span class="nc" id="L49">	    new Select(driver.findElement(By.id(prop.getProperty(&quot;Lnk_Login_UserType&quot;)))).selectByVisibleText(sUser);</span>
+<span class="nc" id="L50">	    driver.findElement(By.id(prop.getProperty(&quot;Btn_Login_Login&quot;))).click();</span>
+	    
+<span class="nc" id="L52">	} </span>
+	
+	public void DeleteSpecificReservation(WebDriver driver, String reservationID)
+	{
+<span class="nc" id="L56">		 driver.findElement(By.id(prop.getProperty(&quot;Txt_DeleteSpecificReservation_ID&quot;))).clear();</span>
+<span class="nc" id="L57">		 driver.findElement(By.id(prop.getProperty(&quot;Txt_DeleteSpecificReservation_ID&quot;))).sendKeys(reservationID);</span>
+<span class="nc" id="L58">		 driver.findElement(By.id(prop.getProperty(&quot;Btn_DeleteSpecificReservation_Submit&quot;))).click();</span>
+<span class="nc" id="L59">	}</span>
+	  
+	public void ViewSpecificReservation(WebDriver driver, String reservation,String error,String idError)
+	{
+<span class="nc" id="L63">		 driver.findElement(By.linkText(prop.getProperty(&quot;Lnk_ManagerHome_View&quot;))).click();</span>
+<span class="nc" id="L64">		 driver.findElement(By.id(prop.getProperty(&quot;Txt_ViewSpecificReservation_ID&quot;))).clear();</span>
+<span class="nc" id="L65">		 driver.findElement(By.id(prop.getProperty(&quot;Txt_ViewSpecificReservation_ID&quot;))).sendKeys(reservation);</span>
+<span class="nc" id="L66">		 driver.findElement(By.id(&quot;searchreservation&quot;)).click();</span>
+<span class="nc" id="L67">		 assertEquals(error,(driver.findElement(By.id(&quot;erMsg&quot;)).getAttribute(&quot;value&quot;)));</span>
+<span class="nc" id="L68">		 assertEquals(idError,(driver.findElement(By.id(prop.getProperty(&quot;ErrMsg_SearchReservation_IdError&quot;))).getAttribute(&quot;value&quot;)));</span>
+		 
+<span class="nc" id="L70">	}</span>
+	
+	public void FinalViewSpecificReservation(WebDriver driver, String reservation)
+	{
+<span class="nc" id="L74">		 driver.findElement(By.linkText(prop.getProperty(&quot;Lnk_ManagerHome_View&quot;))).click();</span>
+<span class="nc" id="L75">		 driver.findElement(By.id(prop.getProperty(&quot;Txt_ViewSpecificReservation_ID&quot;))).clear();</span>
+<span class="nc" id="L76">		 driver.findElement(By.id(prop.getProperty(&quot;Txt_ViewSpecificReservation_ID&quot;))).sendKeys(reservation);</span>
+<span class="nc" id="L77">		 driver.findElement(By.id(&quot;searchreservation&quot;)).click();</span>
+		 
+<span class="nc" id="L79">	}</span>
+	
+	
+	public void ViewUsers(WebDriver driver){
+<span class="nc" id="L83">		driver.findElement(By.linkText(prop.getProperty(&quot;Lnk_ManagerHome_ViewUsers&quot;))).click();</span>
+<span class="nc" id="L84">	    driver.findElement(By.id(&quot;searchUser&quot;)).click();</span>
+<span class="nc" id="L85">	    driver.findElement(By.linkText(prop.getProperty(&quot;Btn_ViewUser_BackToHome&quot;))).click();</span>
+<span class="nc" id="L86">	}</span>
+	
+	public void ViewReservations(WebDriver driver){
+<span class="nc" id="L89">		driver.findElement(By.linkText(prop.getProperty(&quot;Lnk_ManagerHome_ViewReservations&quot;))).click();</span>
+<span class="nc" id="L90">	    driver.findElement(By.id(prop.getProperty(&quot;Btn_ViewReservations_Find&quot;))).click();</span>
+<span class="nc" id="L91">	    driver.findElement(By.linkText(prop.getProperty(&quot;Lnk_ViewReservations_BackToHome&quot;))).click();</span>
+<span class="nc" id="L92">	}</span>
+	public void Revoke(WebDriver driver,String username,String reason,String error,String usernameError,String reasonError){
+<span class="nc" id="L94">		driver.findElement(By.linkText(prop.getProperty(&quot;Lnk_AdminHome_Revoke&quot;))).click();</span>
+<span class="nc" id="L95">	    driver.findElement(By.id(prop.getProperty(&quot;Txt_Revoke_Username&quot;))).clear();</span>
+<span class="nc" id="L96">	    driver.findElement(By.id(prop.getProperty(&quot;Txt_Revoke_Username&quot;))).sendKeys(username);</span>
+<span class="nc" id="L97">	    driver.findElement(By.id(prop.getProperty(&quot;Txt_Revoke_Reason&quot;))).clear();</span>
+<span class="nc" id="L98">	    driver.findElement(By.id(prop.getProperty(&quot;Txt_Revoke_Reason&quot;))).sendKeys(reason);</span>
+<span class="nc" id="L99">	    driver.findElement(By.id(prop.getProperty(&quot;Btn_Revoke_revoke&quot;))).click();</span>
+<span class="nc" id="L100">	    assertEquals(error,(driver.findElement(By.id(prop.getProperty(&quot;ErrMsg_Revoke_Error&quot;))).getAttribute(&quot;value&quot;)));</span>
+<span class="nc" id="L101">	    assertEquals(usernameError,(driver.findElement(By.id(prop.getProperty(&quot;ErrMsg_Revoke_Username&quot;))).getAttribute(&quot;value&quot;)));</span>
+<span class="nc" id="L102">	    assertEquals(reasonError,(driver.findElement(By.id(prop.getProperty(&quot;ErrMsg_Revoke_Reason&quot;))).getAttribute(&quot;value&quot;)));</span>
+	    
+<span class="nc" id="L104">	}</span>
+	 
+	public void FinalRevoke(WebDriver driver,String username,String reason){
+<span class="nc" id="L107">		driver.findElement(By.linkText(prop.getProperty(&quot;Lnk_AdminHome_Revoke&quot;))).click();</span>
+<span class="nc" id="L108">	    driver.findElement(By.id(prop.getProperty(&quot;Txt_Revoke_Username&quot;))).clear();</span>
+<span class="nc" id="L109">	    driver.findElement(By.id(prop.getProperty(&quot;Txt_Revoke_Username&quot;))).sendKeys(username);</span>
+<span class="nc" id="L110">	    driver.findElement(By.id(prop.getProperty(&quot;Txt_Revoke_Reason&quot;))).clear();</span>
+<span class="nc" id="L111">	    driver.findElement(By.id(prop.getProperty(&quot;Txt_Revoke_Reason&quot;))).sendKeys(reason);</span>
+<span class="nc" id="L112">	    driver.findElement(By.id(prop.getProperty(&quot;Btn_Revoke_revoke&quot;))).click();</span>
+	    
+<span class="nc" id="L114">	}</span>
+	
+	public void Unrevoke(WebDriver driver,String username){
+<span class="nc" id="L117">		driver.findElement(By.linkText(prop.getProperty(&quot;Lnk_AdminHome_Unrevoke&quot;))).click();</span>
+<span class="nc" id="L118">	    driver.findElement(By.id(prop.getProperty(&quot;Lnk_Unrevoke_Uname&quot;))).clear();</span>
+<span class="nc" id="L119">	    driver.findElement(By.id(prop.getProperty(&quot;Lnk_Unrevoke_Uname&quot;))).sendKeys(username);</span>
+<span class="nc" id="L120">	    driver.findElement(By.id(prop.getProperty(&quot;Btn_Unrevoke_unrevoke&quot;))).click();</span>
+<span class="nc" id="L121">	    driver.findElement(By.id(prop.getProperty(&quot;Btn_AdminHome_Logout&quot;))).click();</span>
+	    
+<span class="nc" id="L123">	}</span>
+	
+	public void SetUnavailable(WebDriver driver,String parkingarea,String parkingnumber,String type,String error, String areaError,String numberError, String typeError){
+		
+<span class="nc" id="L127">		 driver.findElement(By.linkText(prop.getProperty(&quot;Lnk_ManagerHome_SetSpotUnavailable&quot;))).click();</span>
+<span class="nc" id="L128">		    driver.findElement(By.id(prop.getProperty(&quot;Txt_available_parkingarea&quot;))).clear();</span>
+<span class="nc" id="L129">		    driver.findElement(By.id(prop.getProperty(&quot;Txt_available_parkingarea&quot;))).sendKeys(parkingarea);</span>
+<span class="nc" id="L130">		    driver.findElement(By.id(prop.getProperty(&quot;Txt_available_parkingnumber&quot;))).clear();</span>
+<span class="nc" id="L131">		    driver.findElement(By.id(prop.getProperty(&quot;Txt_available_parkingnumber&quot;))).sendKeys(parkingnumber);</span>
+<span class="nc" id="L132">		    driver.findElement(By.id(prop.getProperty(&quot;Txt_available_type&quot;))).clear();</span>
+<span class="nc" id="L133">		    driver.findElement(By.id(prop.getProperty(&quot;Txt_available_type&quot;))).sendKeys(type);</span>
+<span class="nc" id="L134">		    driver.findElement(By.id(prop.getProperty(&quot;Btn_available_unavailable&quot;))).click();</span>
+		    
+<span class="nc" id="L136">		    assertEquals(error,(driver.findElement(By.id(prop.getProperty(&quot;ErrMsg_Available_error&quot;))).getAttribute(&quot;value&quot;)));</span>
+<span class="nc" id="L137">		    assertEquals(areaError,(driver.findElement(By.id(prop.getProperty(&quot;ErrMsg_Available_area&quot;))).getAttribute(&quot;value&quot;)));</span>
+<span class="nc" id="L138">		    assertEquals(numberError,(driver.findElement(By.id(prop.getProperty(&quot;ErrMsg_Available_number&quot;))).getAttribute(&quot;value&quot;)));</span>
+<span class="nc" id="L139">		    assertEquals(typeError,(driver.findElement(By.id(prop.getProperty(&quot;ErrMsg_Available_type&quot;))).getAttribute(&quot;value&quot;)));</span>
+<span class="nc" id="L140">	}</span>
+	
+	
+	
+	public void AddParkingArea(WebDriver driver,String parking_area,String capacity,String floor,String type,String cart,String camera,String history,String errormsg,String parkingareaError,String capacityError,String floorError,String typeError,String cartError,String cameraError,String historyError){
+<span class="nc" id="L145">		driver.findElement(By.linkText(prop.getProperty(&quot;Lnk_ManagerHome_AddParking&quot;))).click();</span>
+<span class="nc" id="L146">		driver.findElement(By.id(prop.getProperty(&quot;Txt_FormParking_ParkingArea&quot;))).clear();</span>
+<span class="nc" id="L147">	    driver.findElement(By.id(prop.getProperty(&quot;Txt_FormParking_ParkingArea&quot;))).sendKeys(parking_area);</span>
+<span class="nc" id="L148">	    driver.findElement(By.id(prop.getProperty(&quot;Txt_FormParking_Capacity&quot;))).clear();</span>
+<span class="nc" id="L149">	    driver.findElement(By.id(prop.getProperty(&quot;Txt_FormParking_Capacity&quot;))).sendKeys(capacity);</span>
+<span class="nc" id="L150">	    driver.findElement(By.id(prop.getProperty(&quot;Txt_FormParking_Floor&quot;))).clear();</span>
+<span class="nc" id="L151">	    driver.findElement(By.id(prop.getProperty(&quot;Txt_FormParking_Floor&quot;))).sendKeys(floor);</span>
+<span class="nc" id="L152">	    driver.findElement(By.id(prop.getProperty(&quot;Txt_FormParking_Type&quot;))).clear();</span>
+<span class="nc" id="L153">	    driver.findElement(By.id(prop.getProperty(&quot;Txt_FormParking_Type&quot;))).sendKeys(type);</span>
+<span class="nc" id="L154">	    driver.findElement(By.id(prop.getProperty(&quot;Txt_FormParking_Cart&quot;))).clear();</span>
+<span class="nc" id="L155">	    driver.findElement(By.id(prop.getProperty(&quot;Txt_FormParking_Cart&quot;))).sendKeys(cart);</span>
+<span class="nc" id="L156">	    driver.findElement(By.id(prop.getProperty(&quot;Txt_FormParking_Camera&quot;))).clear();</span>
+<span class="nc" id="L157">	    driver.findElement(By.id(prop.getProperty(&quot;Txt_FormParking_Camera&quot;))).sendKeys(camera);</span>
+<span class="nc" id="L158">	    driver.findElement(By.id(prop.getProperty(&quot;Txt_FormParking_History&quot;))).clear();</span>
+<span class="nc" id="L159">	    driver.findElement(By.id(prop.getProperty(&quot;Txt_FormParking_History&quot;))).sendKeys(history);</span>
+<span class="nc" id="L160">	    driver.findElement(By.id(prop.getProperty(&quot;Btn_FormParking_Insert&quot;))).click();</span>
+	     
+<span class="nc" id="L162">	    assertEquals(errormsg,(driver.findElement(By.id(prop.getProperty(&quot;ErrMsg_FormParking_Errormsg&quot;))).getAttribute(&quot;value&quot;)));</span>
+<span class="nc" id="L163">	    assertEquals(parkingareaError,(driver.findElement(By.id(prop.getProperty(&quot;ErrMsg_FormParking_ParkingAreaError&quot;))).getAttribute(&quot;value&quot;)));</span>
+<span class="nc" id="L164">	    assertEquals(capacityError,(driver.findElement(By.id(prop.getProperty(&quot;ErrMsg_FormParking_CapacityErrorMsg&quot;))).getAttribute(&quot;value&quot;)));</span>
+<span class="nc" id="L165">	    assertEquals(floorError,(driver.findElement(By.id(prop.getProperty(&quot;ErrMsg_FormParking_FloorErrorMsg&quot;))).getAttribute(&quot;value&quot;)));</span>
+<span class="nc" id="L166">	    assertEquals(typeError,(driver.findElement(By.id(prop.getProperty(&quot;ErrMsg_FormParking_TypeErrorMsg&quot;))).getAttribute(&quot;value&quot;)));</span>
+<span class="nc" id="L167">	    assertEquals(cartError,(driver.findElement(By.id(prop.getProperty(&quot;ErrMsg_FormParking_CartErrorMsg&quot;))).getAttribute(&quot;value&quot;)));</span>
+<span class="nc" id="L168">	    assertEquals(cameraError,(driver.findElement(By.id(prop.getProperty(&quot;ErrMsg_FormParking_CameraErrorMsg&quot;))).getAttribute(&quot;value&quot;)));</span>
+<span class="nc" id="L169">	    assertEquals(historyError,(driver.findElement(By.id(prop.getProperty(&quot;ErrMsg_FormParking_HistoryErrorMsg&quot;))).getAttribute(&quot;value&quot;)));</span>
+<span class="nc" id="L170">	}</span>
+	
+	public void FinalAddParkingArea(WebDriver driver,String parkingarea, String capacity,String floor,String type,String cart,String camera,String history){
+<span class="nc" id="L173">		driver.findElement(By.linkText(prop.getProperty(&quot;Lnk_ManagerHome_AddParking&quot;))).click();</span>
+<span class="nc" id="L174">		driver.findElement(By.id(prop.getProperty(&quot;Txt_FormParking_ParkingArea&quot;))).clear();</span>
+<span class="nc" id="L175">	    driver.findElement(By.id(prop.getProperty(&quot;Txt_FormParking_ParkingArea&quot;))).sendKeys(parkingarea);</span>
+<span class="nc" id="L176">	    driver.findElement(By.id(prop.getProperty(&quot;Txt_FormParking_Capacity&quot;))).clear();</span>
+<span class="nc" id="L177">	    driver.findElement(By.id(prop.getProperty(&quot;Txt_FormParking_Capacity&quot;))).sendKeys(capacity);</span>
+<span class="nc" id="L178">	    driver.findElement(By.id(prop.getProperty(&quot;Txt_FormParking_Floor&quot;))).clear();</span>
+<span class="nc" id="L179">	    driver.findElement(By.id(prop.getProperty(&quot;Txt_FormParking_Floor&quot;))).sendKeys(floor);</span>
+<span class="nc" id="L180">	    driver.findElement(By.id(prop.getProperty(&quot;Txt_FormParking_Type&quot;))).clear();</span>
+<span class="nc" id="L181">	    driver.findElement(By.id(prop.getProperty(&quot;Txt_FormParking_Type&quot;))).sendKeys(type);</span>
+<span class="nc" id="L182">	    driver.findElement(By.id(prop.getProperty(&quot;Txt_FormParking_Cart&quot;))).clear();</span>
+<span class="nc" id="L183">	    driver.findElement(By.id(prop.getProperty(&quot;Txt_FormParking_Cart&quot;))).sendKeys(cart);</span>
+<span class="nc" id="L184">	    driver.findElement(By.id(prop.getProperty(&quot;Txt_FormParking_Camera&quot;))).clear();</span>
+<span class="nc" id="L185">	    driver.findElement(By.id(prop.getProperty(&quot;Txt_FormParking_Camera&quot;))).sendKeys(camera);</span>
+<span class="nc" id="L186">	    driver.findElement(By.id(prop.getProperty(&quot;Txt_FormParking_History&quot;))).clear();</span>
+<span class="nc" id="L187">	    driver.findElement(By.id(prop.getProperty(&quot;Txt_FormParking_History&quot;))).sendKeys(history);</span>
+<span class="nc" id="L188">	    driver.findElement(By.id(prop.getProperty(&quot;Btn_FormParking_Insert&quot;))).click();</span>
+<span class="nc" id="L189">	}</span>
+	
+	public void SetAvailability(WebDriver driver,String parking_Area,String parking_Number,String membership_type) throws InterruptedException
+	{
+		   
+		                   
+<span class="nc" id="L195">		driver.findElement(By.name(prop.getProperty(&quot;Txt_Available_ParkingArea&quot;))).clear();</span>
+<span class="nc" id="L196">	    driver.findElement(By.name(prop.getProperty(&quot;Txt_Available_ParkingArea&quot;))).sendKeys(parking_Area);</span>
+<span class="nc" id="L197">	    Thread.sleep(1000);</span>
+<span class="nc" id="L198">	    driver.findElement(By.id(prop.getProperty(&quot;Txt_Available_ParkingNumber&quot;))).clear();</span>
+<span class="nc" id="L199">	    driver.findElement(By.id(prop.getProperty(&quot;Txt_Available_ParkingNumber&quot;))).sendKeys(parking_Number);</span>
+<span class="nc" id="L200">	    Thread.sleep(1000);</span>
+<span class="nc" id="L201">	    driver.findElement(By.name(prop.getProperty(&quot;Txt_Available_MembershipType&quot;))).clear();</span>
+<span class="nc" id="L202">	    driver.findElement(By.name(prop.getProperty(&quot;Txt_Available_MembershipType&quot;))).sendKeys(membership_type);</span>
+<span class="nc" id="L203">	    Thread.sleep(5000);</span>
+<span class="nc" id="L204">	    driver.findElement(By.cssSelector(prop.getProperty(&quot;Btn_Available_SetStatus&quot;))).click();</span>
+	    
+<span class="nc" id="L206">	}</span>
+	
+	public void SearchUser(WebDriver driver,String username) throws InterruptedException
+	{
+<span class="nc" id="L210">		driver.findElement(By.name(prop.getProperty(&quot;Txt_SearchUser_Username&quot;))).clear();</span>
+<span class="nc" id="L211">	    driver.findElement(By.name(prop.getProperty(&quot;Txt_SearchUser_Username&quot;))).sendKeys(username);</span>
+<span class="nc" id="L212">	    Thread.sleep(5000);</span>
+<span class="nc" id="L213">	    driver.findElement(By.cssSelector(prop.getProperty(&quot;Btn_SearchUser_SearchButton&quot;))).click();</span>
+	    
+<span class="nc" id="L215">	}</span>
+	
+	public void UpdateUser(WebDriver driver,String userrole) throws InterruptedException
+	{
+<span class="nc" id="L219">	     Thread.sleep(4000);</span>
+<span class="nc" id="L220">		 new Select(driver.findElement(By.id(prop.getProperty(&quot;Lst_UpdateUser_UserRole&quot;)))).selectByVisibleText(userrole);</span>
+<span class="nc" id="L221">		 Thread.sleep(5000);</span>
+<span class="nc" id="L222">		 driver.findElement(By.cssSelector(prop.getProperty(&quot;Btn_UpdateUser_UpdateButton&quot;))).click();</span>
+<span class="nc" id="L223">		 Thread.sleep(3000);</span>
+		 
+<span class="nc" id="L225">	}</span>
+	
+	
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span>Merged (30 Apr, 2019 8:33:45 AM)</div></body></html>

@@ -1,0 +1,5 @@
+1,searchReservation,1,,,,,,,,,,
+2,searchReservation,,,,,,,,,,Please correct the following errors,Reservation ID cannot be blank
+3,searchReservation,string,,,,,,,,,Please correct the following errors,Reservation ID must be a number
+4,searchReservation,123,,,,,,,,,Please correct the following errors,Reservation does not exist
+5,ser,,,,,,,,,,,

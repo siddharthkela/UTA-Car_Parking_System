@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>SeleniumTC03.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Merged (30 Apr, 2019 8:33:45 AM)</a> &gt; <a href="../../index.html" class="el_group">car_parking_system</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">tests</a> &gt; <span class="el_source">SeleniumTC03.java</span></div><h1>SeleniumTC03.java</h1><pre class="source lang-java linenums">package tests;
+ 
+import java.util.regex.Pattern;
+import java.util.concurrent.TimeUnit;
+import org.junit.*;
+import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.*;
+import org.openqa.selenium.*;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
+import java.util.Properties;
+import java.io.FileInputStream;
+
+
+import functions.*;
+  
+<span class="nc" id="L17">public class SeleniumTC03 extends Functions { </span>
+  /*private WebDriver driver;*/ 
+  private String baseUrl;
+<span class="nc" id="L20">  private boolean acceptNextAlert = true; </span>
+<span class="nc" id="L21">  private StringBuffer verificationErrors = new StringBuffer();</span>
+  public static String sAppURL, sSharedUIMapPath; 
+ /* public Properties prop;*/
+   
+  @Before 
+  public void setUp() throws Exception {
+	   
+<span class="nc" id="L28">	System.setProperty(&quot;webdriver.firefox.marionette&quot;, &quot;C:\\GeckoSelenium\\geckodriver.exe&quot;);</span>
+<span class="nc" id="L29">    driver = new FirefoxDriver();</span>
+<span class="nc" id="L30">    baseUrl = &quot;http://localhost:8079/&quot;;</span>
+<span class="nc" id="L31">    prop= new Properties();</span>
+      
+<span class="nc" id="L33">    prop.load(new FileInputStream(&quot;./Configuration/Configuration.properties&quot;));</span>
+<span class="nc" id="L34">    sAppURL = prop.getProperty(&quot;sAppURL&quot;);</span>
+<span class="nc" id="L35">   sSharedUIMapPath = prop.getProperty(&quot;SharedUIMap&quot;);</span>
+<span class="nc" id="L36">    prop.load(new FileInputStream(sSharedUIMapPath));</span>
+<span class="nc" id="L37">    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);</span>
+<span class="nc" id="L38">  } </span>
+ 
+  @Test
+  public void testManager() throws Exception {
+<span class="nc" id="L42">    driver.get(sAppURL);</span>
+<span class="nc" id="L43">    Thread.sleep(4000);</span>
+<span class="nc" id="L44">    driver.findElement(By.linkText(prop.getProperty(&quot;Lnk_Login_ClickHereToRegister&quot;))).click();</span>
+<span class="nc" id="L45">    Registration(driver,&quot;Hari&quot;,&quot;G&quot;,&quot;1001552486&quot;,&quot;Arlington&quot;,&quot;hari&quot;,&quot;hari@gmail.com&quot;,&quot;Qwerty#123&quot;,</span>
+<span class="nc" id="L46">    		&quot;1234567890&quot;,&quot;DL12345678&quot;,&quot;hg123&quot;,&quot;Premium&quot;,&quot;Manager&quot;);</span>
+<span class="nc" id="L47">    Login(driver,&quot;hari&quot;,&quot;Qwerty#123&quot;,&quot;Manager&quot;);</span>
+     
+    
+    /*driver.findElement(By.id(prop.getProperty(&quot;Txt_Register_FirstName&quot;))).clear();
+    driver.findElement(By.id(prop.getProperty(&quot;Txt_Register_FirstName&quot;))).sendKeys(&quot;Hari&quot;);
+    driver.findElement(By.id(prop.getProperty(&quot;Txt_Register_LastName&quot;))).clear();
+    driver.findElement(By.id(prop.getProperty(&quot;Txt_Register_LastName&quot;))).sendKeys(&quot;G&quot;);
+    driver.findElement(By.id(prop.getProperty(&quot;Txt_Register_UtaID&quot;))).clear();
+    driver.findElement(By.id(prop.getProperty(&quot;Txt_Register_UtaID&quot;))).sendKeys(&quot;1001552486&quot;);
+    driver.findElement(By.id(prop.getProperty(&quot;Txt_Register_Address&quot;))).clear();
+    driver.findElement(By.id(prop.getProperty(&quot;Txt_Register_Address&quot;))).sendKeys(&quot;Arlington&quot;);
+    driver.findElement(By.id(prop.getProperty(&quot;Txt_Register_UserName&quot;))).clear();
+    driver.findElement(By.id(prop.getProperty(&quot;Txt_Register_UserName&quot;))).sendKeys(&quot;hari&quot;);
+    driver.findElement(By.id(prop.getProperty(&quot;Txt_Register_Email&quot;))).clear();
+    driver.findElement(By.id(prop.getProperty(&quot;Txt_Register_Email&quot;))).sendKeys(&quot;hari@gmail.com&quot;);
+    driver.findElement(By.id(prop.getProperty(&quot;Txt_Register_Password&quot;))).clear();
+    driver.findElement(By.id(prop.getProperty(&quot;Txt_Register_Password&quot;))).sendKeys(&quot;Qwerty#123&quot;);
+    driver.findElement(By.id(prop.getProperty(&quot;Txt_Register_Phone&quot;))).clear();
+    driver.findElement(By.id(prop.getProperty(&quot;Txt_Register_Phone&quot;))).sendKeys(&quot;1234567890&quot;);
+    driver.findElement(By.id(prop.getProperty(&quot;Txt_Register_Dlnumber&quot;))).clear();
+    driver.findElement(By.id(prop.getProperty(&quot;Txt_Register_Dlnumber&quot;))).sendKeys(&quot;DL12345678&quot;);
+    driver.findElement(By.name(prop.getProperty(&quot;Txt_Register_Vnumber&quot;))).clear();
+    driver.findElement(By.name(prop.getProperty(&quot;Txt_Register_Vnumber&quot;))).sendKeys(&quot;hg123&quot;);
+    new Select(driver.findElement(By.name(prop.getProperty(&quot;Lst_Register_Permit&quot;)))).selectByVisibleText(&quot;Premium&quot;);
+    new Select(driver.findElement(By.id(prop.getProperty(&quot;Lst_Register_Role&quot;)))).selectByVisibleText(&quot;Manager&quot;);
+    driver.findElement(By.cssSelector(prop.getProperty(&quot;Lnk_Register_Submit&quot;))).click();
+    driver.findElement(By.name(prop.getProperty(&quot;Txt_Login_UserName&quot;))).clear();
+    driver.findElement(By.name(prop.getProperty(&quot;Txt_Login_UserName&quot;))).sendKeys(&quot;hari&quot;);
+    driver.findElement(By.name(prop.getProperty(&quot;Txt_Login_Password&quot;))).clear();
+    driver.findElement(By.name(prop.getProperty(&quot;Txt_Login_Password&quot;))).sendKeys(&quot;Qwerty#123&quot;);
+    new Select(driver.findElement(By.name(prop.getProperty(&quot;Lnk_Login_UserType&quot;)))).selectByVisibleText(&quot;Manager&quot;);
+    driver.findElement(By.name(prop.getProperty(&quot;Btn_Login_Login&quot;))).click();
+    Thread.sleep(3000);
+    driver.findElement(By.linkText(prop.getProperty(&quot;Lnk_ManagerHome_SearchUsers&quot;))).click();
+    Thread.sleep(3000);
+    driver.findElement(By.name(prop.getProperty(&quot;Btn_ManagerHome_Find&quot;))).click(); 
+    Thread.sleep(3000); 
+    driver.findElement(By.linkText(prop.getProperty(&quot;Lnk_ManagerHome_BackToHome&quot;))).click();
+    Thread.sleep(3000); 
+    driver.findElement(By.linkText(prop.getProperty(&quot;Lnk_Available_SetSpotUnavailable&quot;))).click();
+    SetAvailability(driver,&quot;West Garage Floor 5&quot;,&quot;5&quot;,&quot;basic&quot;);
+    
+    driver.findElement(By.name(prop.getProperty(&quot;Txt_Available_ParkingArea&quot;))).clear();
+    driver.findElement(By.name(prop.getProperty(&quot;Txt_Available_ParkingArea&quot;))).sendKeys(&quot;West Garage Floor 5&quot;);
+    driver.findElement(By.id(prop.getProperty(&quot;Txt_Available_ParkingNumber&quot;))).clear();
+    driver.findElement(By.id(prop.getProperty(&quot;Txt_Available_ParkingNumber&quot;))).sendKeys(&quot;5&quot;);
+    driver.findElement(By.name(prop.getProperty(&quot;Txt_Available_MembershipType&quot;))).clear();
+    driver.findElement(By.name(prop.getProperty(&quot;Txt_Available_MembershipType&quot;))).sendKeys(&quot;basic&quot;);
+    driver.findElement(By.cssSelector(prop.getProperty(&quot;Btn_Available_SetStatus&quot;))).click();
+    Thread.sleep(3000);
+    driver.findElement(By.linkText(prop.getProperty(&quot;Lnk_Available_BackToHome&quot;))).click();
+    Thread.sleep(3000);
+    driver.findElement(By.cssSelector(prop.getProperty(&quot;Btn_ManagerHome_Logout&quot;))).click();
+    Thread.sleep(3000);*/
+<span class="nc" id="L101">  }</span>
+
+  @After
+  public void tearDown() throws Exception {
+<span class="nc" id="L105">    driver.quit();</span>
+<span class="nc" id="L106">    String verificationErrorString = verificationErrors.toString();</span>
+<span class="nc bnc" id="L107" title="All 2 branches missed.">    if (!&quot;&quot;.equals(verificationErrorString)) {</span>
+<span class="nc" id="L108">      fail(verificationErrorString);</span>
+    }
+<span class="nc" id="L110">  }</span>
+
+  private boolean isElementPresent(By by) {
+    try {
+<span class="nc" id="L114">      driver.findElement(by);</span>
+<span class="nc" id="L115">      return true;</span>
+<span class="nc" id="L116">    } catch (NoSuchElementException e) {</span>
+<span class="nc" id="L117">      return false;</span>
+    }
+  }
+
+  private boolean isAlertPresent() {
+    try {
+<span class="nc" id="L123">      driver.switchTo().alert();</span>
+<span class="nc" id="L124">      return true;</span>
+<span class="nc" id="L125">    } catch (NoAlertPresentException e) {</span>
+<span class="nc" id="L126">      return false;</span>
+    }
+  }
+
+  private String closeAlertAndGetItsText() {
+    try {
+<span class="nc" id="L132">      Alert alert = driver.switchTo().alert();</span>
+<span class="nc" id="L133">      String alertText = alert.getText();</span>
+<span class="nc bnc" id="L134" title="All 2 branches missed.">      if (acceptNextAlert) {</span>
+<span class="nc" id="L135">        alert.accept();</span>
+<span class="nc" id="L136">      } else {</span>
+<span class="nc" id="L137">        alert.dismiss();</span>
+      }
+<span class="nc" id="L139">      return alertText;</span>
+    } finally {
+<span class="nc" id="L141">      acceptNextAlert = true;</span>
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span>Merged (30 Apr, 2019 8:33:45 AM)</div></body></html>

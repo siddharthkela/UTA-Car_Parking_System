@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>ParkingDAO.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Merged (30 Apr, 2019 8:33:45 AM)</a> &gt; <a href="../../index.html" class="el_group">car_parking_system</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">data</a> &gt; <span class="el_source">ParkingDAO.java</span></div><h1>ParkingDAO.java</h1><pre class="source lang-java linenums">package data;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+
+import model.Parking;
+import util.MyConnectionProvider;
+
+<span class="nc" id="L12">public class ParkingDAO {</span>
+	
+
+static PreparedStatement ps;
+	public static void StoreListinDB(Parking parking) {
+<span class="fc" id="L17">		Statement stmt = null;		</span>
+<span class="fc" id="L18">		Connection conn = MyConnectionProvider.getDBConnection();</span>
+		try {
+<span class="fc" id="L20">			stmt = conn.createStatement();</span>
+<span class="fc" id="L21">			String q1=&quot;INSERT INTO PARKINGAREAS (parking_area,capacity,floor,type,cart,camera,history)&quot;; </span>
+<span class="fc" id="L22">			String insertParking = q1 + &quot; VALUES ('&quot;  </span>
+<span class="fc" id="L23">					+ parking.getParking_area()  + &quot;','&quot;</span>
+<span class="fc" id="L24">					+ parking.getCapacity() + &quot;','&quot;		</span>
+<span class="fc" id="L25">					+ parking.getFloor() + &quot;','&quot;</span>
+<span class="fc" id="L26">					+ parking.getType() + &quot;','&quot;</span>
+<span class="fc" id="L27">					+ parking.getCart() + &quot;','&quot;</span>
+<span class="fc" id="L28">					+ parking.getCamera() + &quot;','&quot;</span>
+<span class="fc" id="L29">					+ parking.getHistory()+&quot;')&quot;;</span>
+<span class="fc" id="L30">			stmt.executeUpdate(insertParking);	</span>
+			 
+<span class="pc" id="L32">		} catch (SQLException e) {</span>
+<span class="nc" id="L33">			e.printStackTrace();</span>
+		} finally {
+			try {
+<span class="fc" id="L36">				conn.close();</span>
+	
+<span class="pc" id="L38">			} catch (SQLException e) {</span>
+<span class="nc" id="L39">				e.printStackTrace();</span>
+			}};
+<span class="fc" id="L41">	}</span>
+	
+	
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span>Merged (30 Apr, 2019 8:33:45 AM)</div></body></html>

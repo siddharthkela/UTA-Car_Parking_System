@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>ReservationController.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Merged (30 Apr, 2019 8:33:45 AM)</a> &gt; <a href="../../index.html" class="el_group">car_parking_system</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">controller</a> &gt; <span class="el_source">ReservationController.java</span></div><h1>ReservationController.java</h1><pre class="source lang-java linenums">package controller;
+import java.io.IOException;
+import java.util.ArrayList;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import data.ReservationDAO;
+import data.UserDaoImple;
+import model.Reservation;
+import model.ReservationErrorMsgs;
+
+/**
+ * Servlet implementation class ReservationController
+ */
+@WebServlet(&quot;/ReservationController&quot;)
+<span class="fc" id="L21">public class ReservationController extends HttpServlet {</span>
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */ 
+	private void getReservationParam (HttpServletRequest request, Reservation reservation) {
+<span class="fc" id="L28">		reservation.setReservation(request.getParameter(&quot;reservationid&quot;),request.getParameter(&quot;username&quot;),request.getParameter(&quot;parking_Area&quot;),request.getParameter(&quot;parking_Number&quot;),request.getParameter(&quot;starttime_hour&quot;),request.getParameter(&quot;starttime_minutes&quot;),request.getParameter(&quot;endtime_hour&quot;),request.getParameter(&quot;endtime_minutes&quot;),request.getParameter(&quot;cost&quot;));  </span>
+<span class="fc" id="L29">	}</span>
+
+	/** 
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+<span class="nc" id="L36">		doPost(request, response);</span>
+<span class="nc" id="L37">	} </span>
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+<span class="fc" id="L44">		String action = request.getParameter(&quot;action&quot;), url=&quot;&quot;;</span>
+<span class="fc" id="L45">		HttpSession session = request.getSession();</span>
+<span class="fc" id="L46">		Reservation reservation = new Reservation();</span>
+<span class="fc" id="L47">		ReservationErrorMsgs RerrorMsgs = new ReservationErrorMsgs();</span>
+	
+<span class="fc bfc" id="L49" title="All 2 branches covered.">		if (action.equalsIgnoreCase(&quot;searchReservation&quot;) ) {</span>
+	  
+<span class="fc" id="L51">			String reservationID = request.getParameter(&quot;reservationid&quot;);</span>
+<span class="fc" id="L52">			session.removeAttribute(&quot;RerrorMsgs&quot;);</span>
+<span class="fc" id="L53">			reservation.setReservation(reservationID,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;);</span>
+<span class="fc" id="L54">			reservation.validateReservation(action,reservation, RerrorMsgs);</span>
+			
+			
+<span class="fc" id="L57">			getReservationParam(request,reservation);</span>
+<span class="fc" id="L58">			reservation.validateReservation(action,reservation,RerrorMsgs);</span>
+<span class="fc" id="L59">			session.setAttribute(&quot;reservation&quot;, reservation);</span>
+<span class="fc bfc" id="L60" title="All 2 branches covered.">			if (!RerrorMsgs.getErrorMsg().equals(&quot;&quot;)) {// if error messages</span>
+<span class="fc" id="L61">				getReservationParam(request,reservation);</span>
+<span class="fc" id="L62">				session.setAttribute(&quot;RerrorMsgs&quot;, RerrorMsgs);</span>
+				
+<span class="fc" id="L64">				url=&quot;/searchReservation.jsp&quot;;</span>
+<span class="fc" id="L65">				getServletContext().getRequestDispatcher(url).forward(request, response);</span>
+				
+<span class="fc" id="L67">			}</span>
+			else{
+<span class="fc" id="L69">			ArrayList&lt;Reservation&gt; reservationInDB = new ArrayList&lt;Reservation&gt;();</span>
+<span class="fc" id="L70">			reservationInDB=ReservationDAO.listReservation(reservationID);</span>
+<span class="fc" id="L71">         	session.setAttribute(&quot;RESERVATION&quot;, reservationInDB);</span>
+<span class="fc" id="L72">         	session.removeAttribute(&quot;reservation&quot;);</span>
+<span class="fc" id="L73">         	url=&quot;/ViewReservation.jsp&quot;;</span>
+<span class="fc" id="L74">         	getServletContext().getRequestDispatcher(url).forward(request, response);</span>
+         	
+		}
+<span class="fc" id="L77">		}</span>
+		else{
+<span class="pc bpc" id="L79" title="1 of 2 branches missed.">			if(action.equalsIgnoreCase(&quot;delete&quot;)){			</span>
+<span class="fc" id="L80">				String reservationid=request.getParameter(&quot;reservationid&quot;);	</span>
+<span class="fc" id="L81">				System.out.println(reservationid);</span>
+<span class="fc" id="L82">				ReservationDAO.DeleteReservation(reservationid);</span>
+<span class="fc" id="L83">				url=&quot;/ViewReservations.jsp&quot;;</span>
+<span class="fc" id="L84">				getServletContext().getRequestDispatcher(url).forward(request, response);</span>
+			}
+		}
+		//getServletContext().getRequestDispatcher(url).forward(request, response);	
+<span class="fc" id="L88">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span>Merged (30 Apr, 2019 8:33:45 AM)</div></body></html>

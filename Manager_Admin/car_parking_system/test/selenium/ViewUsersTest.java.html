@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>ViewUsersTest.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Merged (30 Apr, 2019 8:33:45 AM)</a> &gt; <a href="../../index.html" class="el_group">car_parking_system</a> &gt; <a href="../index.html" class="el_bundle">test</a> &gt; <a href="index.source.html" class="el_package">selenium</a> &gt; <span class="el_source">ViewUsersTest.java</span></div><h1>ViewUsersTest.java</h1><pre class="source lang-java linenums">package selenium;
+
+import java.util.regex.Pattern;
+import java.util.concurrent.TimeUnit;
+import org.junit.*;
+import org.junit.runner.RunWith;
+
+import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.*;
+import org.openqa.selenium.*;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
+
+import functions.Functions;
+import junitparams.FileParameters;
+import junitparams.JUnitParamsRunner;
+
+import java.util.Properties;
+import java.io.FileInputStream; 
+@RunWith(JUnitParamsRunner.class)
+<span class="nc" id="L21">public class ViewUsersTest extends Functions{</span>
+  //private WebDriver driver;
+  private String baseUrl;
+<span class="nc" id="L24">  private boolean acceptNextAlert = true;</span>
+<span class="nc" id="L25">  private StringBuffer verificationErrors = new StringBuffer();</span>
+  public static String sAppURL, sSharedUIMapPath; 
+  //public Properties prop;
+
+  @Before
+  public void setUp() throws Exception {
+<span class="nc" id="L31">	  System.setProperty(&quot;webdriver.firefox.marionette&quot;, &quot;C:\\GeckoSelenium\\geckodriver.exe&quot;);</span>
+<span class="nc" id="L32">    driver = new FirefoxDriver();</span>
+<span class="nc" id="L33">    baseUrl = &quot;http://localhost:8079/&quot;;</span>
+<span class="nc" id="L34">    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);</span>
+<span class="nc" id="L35">    prop= new Properties();</span>
+    
+<span class="nc" id="L37">    prop.load(new FileInputStream(&quot;./Configuration/Configuration.properties&quot;));</span>
+<span class="nc" id="L38">    sAppURL = prop.getProperty(&quot;sAppURL&quot;);</span>
+<span class="nc" id="L39">    sSharedUIMapPath = prop.getProperty(&quot;SharedUIMap&quot;);</span>
+    
+<span class="nc" id="L41">    prop.load(new FileInputStream(sSharedUIMapPath));</span>
+<span class="nc" id="L42">  }</span>
+   
+  
+  @Test
+  @FileParameters(&quot;src/Excel/ViewUser.csv&quot;)
+  public void testViewUsers(String username, String password, String role) throws Exception {
+<span class="nc" id="L48">    driver.get(sAppURL);</span>
+<span class="nc" id="L49">    Login(driver,username,password,role);</span>
+<span class="nc" id="L50">    ViewUsers(driver);</span>
+<span class="nc" id="L51">    driver.findElement(By.id(prop.getProperty(&quot;Btn_ManagerHome_Logout&quot;))).click();</span>
+<span class="nc" id="L52">  }</span>
+
+  @After
+  public void tearDown() throws Exception {
+<span class="nc" id="L56">    driver.quit();</span>
+<span class="nc" id="L57">    String verificationErrorString = verificationErrors.toString();</span>
+<span class="nc bnc" id="L58" title="All 2 branches missed.">    if (!&quot;&quot;.equals(verificationErrorString)) {</span>
+<span class="nc" id="L59">      fail(verificationErrorString);</span>
+    }
+<span class="nc" id="L61">  }</span>
+
+  private boolean isElementPresent(By by) {
+    try {
+<span class="nc" id="L65">      driver.findElement(by);</span>
+<span class="nc" id="L66">      return true;</span>
+<span class="nc" id="L67">    } catch (NoSuchElementException e) {</span>
+<span class="nc" id="L68">      return false;</span>
+    }
+  }
+
+  private boolean isAlertPresent() {
+    try {
+<span class="nc" id="L74">      driver.switchTo().alert();</span>
+<span class="nc" id="L75">      return true;</span>
+<span class="nc" id="L76">    } catch (NoAlertPresentException e) {</span>
+<span class="nc" id="L77">      return false;</span>
+    }
+  }
+
+  private String closeAlertAndGetItsText() {
+    try {
+<span class="nc" id="L83">      Alert alert = driver.switchTo().alert();</span>
+<span class="nc" id="L84">      String alertText = alert.getText();</span>
+<span class="nc bnc" id="L85" title="All 2 branches missed.">      if (acceptNextAlert) {</span>
+<span class="nc" id="L86">        alert.accept();</span>
+<span class="nc" id="L87">      } else {</span>
+<span class="nc" id="L88">        alert.dismiss();</span>
+      }
+<span class="nc" id="L90">      return alertText;</span>
+    } finally {
+<span class="nc" id="L92">      acceptNextAlert = true;</span>
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span>Merged (30 Apr, 2019 8:33:45 AM)</div></body></html>

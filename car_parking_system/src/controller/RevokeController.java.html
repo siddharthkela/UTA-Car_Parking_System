@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>RevokeController.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Merged (30 Apr, 2019 8:33:45 AM)</a> &gt; <a href="../../index.html" class="el_group">car_parking_system</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">controller</a> &gt; <span class="el_source">RevokeController.java</span></div><h1>RevokeController.java</h1><pre class="source lang-java linenums">package controller;
+
+import model.*;
+import data.*;
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import data.ParkingDAO;
+
+/**
+ * Servlet implementation class RevokeController
+ */
+@WebServlet(&quot;/RevokeController&quot;)
+<span class="fc" id="L19">public class RevokeController extends HttpServlet {</span>
+	private static final long serialVersionUID = 1L;
+        
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+	private void getRevokeParam (HttpServletRequest request, Revoke revoke) {
+<span class="fc" id="L26">		revoke.setRevoke(request.getParameter(&quot;username&quot;),request.getParameter(&quot;reason&quot;));  </span>
+<span class="fc" id="L27">	}</span>
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+<span class="nc" id="L34">		doPost(request, response);</span>
+<span class="nc" id="L35">	}</span>
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+<span class="fc" id="L42">		String action = request.getParameter(&quot;action&quot;), url=&quot;&quot;;</span>
+<span class="fc" id="L43">		HttpSession session = request.getSession();</span>
+<span class="fc" id="L44">		Revoke revoke = new Revoke();</span>
+<span class="fc" id="L45">		RevokeErrorMsgs RverrorMsgs = new RevokeErrorMsgs();</span>
+	
+<span class="pc bpc" id="L47" title="1 of 2 branches missed.">		if (action.equalsIgnoreCase(&quot;revoke&quot;) ) {  </span>
+<span class="fc" id="L48">			getRevokeParam(request,revoke);</span>
+<span class="fc" id="L49">			revoke.validateRevoke(action,revoke,RverrorMsgs);</span>
+<span class="fc" id="L50">			session.setAttribute(&quot;revoke&quot;, revoke);</span>
+<span class="fc bfc" id="L51" title="All 2 branches covered.">			if (!RverrorMsgs.getErrorMsg().equals(&quot;&quot;)) {// if error messages</span>
+<span class="fc" id="L52">				getRevokeParam(request,revoke);</span>
+<span class="fc" id="L53">				session.setAttribute(&quot;RverrorMsgs&quot;, RverrorMsgs);</span>
+				
+<span class="fc" id="L55">				url=&quot;/Revoke.jsp&quot;;</span>
+<span class="fc" id="L56">				getServletContext().getRequestDispatcher(url).forward(request, response);</span>
+				
+<span class="fc" id="L58">			}</span>
+			else {// if no error messages
+<span class="fc" id="L60">				UserDaoImple.StoreListinDB(revoke);</span>
+<span class="fc" id="L61">				url=&quot;/AdminHomePage.jsp&quot;;</span>
+				//url=&quot;AdminHomePage.jsp&quot;;
+<span class="fc" id="L63">				getServletContext().getRequestDispatcher(url).forward(request, response);</span>
+			}
+		}
+<span class="nc" id="L66">		getServletContext().getRequestDispatcher(url).forward(request, response);</span>
+<span class="nc" id="L67">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span>Merged (30 Apr, 2019 8:33:45 AM)</div></body></html>

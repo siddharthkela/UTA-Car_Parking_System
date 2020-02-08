@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>LoginTest.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Merged (30 Apr, 2019 8:33:45 AM)</a> &gt; <a href="../../index.html" class="el_group">car_parking_system</a> &gt; <a href="../index.html" class="el_bundle">test</a> &gt; <a href="index.source.html" class="el_package">car_parking_system.model</a> &gt; <span class="el_source">LoginTest.java</span></div><h1>LoginTest.java</h1><pre class="source lang-java linenums">package car_parking_system.model;
+
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import junitparams.FileParameters;
+import junitparams.JUnitParamsRunner;
+import model.Login;
+import model.LoginErrorMsgs;
+
+@RunWith(JUnitParamsRunner.class)
+<span class="fc" id="L14">public class LoginTest </span>
+{
+	LoginErrorMsgs lerrorm;
+	Login login; 
+	@Before
+	public void setUp() throws Exception {
+<span class="fc" id="L20">		lerrorm=new LoginErrorMsgs();</span>
+<span class="fc" id="L21">		login= new Login();</span>
+<span class="fc" id="L22">	} </span>
+
+	@Test
+	@FileParameters(&quot;test/login.csv&quot;)
+	public void test(	int testcaseNo, String action, String username, String password, String errorMsg,    
+						String userNameError,    String passwordError) {
+		
+<span class="fc" id="L29">		login.setLogin(username, password); </span>
+<span class="fc" id="L30">		login.validateLogin(action, login, lerrorm);</span>
+<span class="fc" id="L31">		assertEquals(errorMsg,lerrorm.getErrorMsg());</span>
+<span class="fc" id="L32">		assertEquals(userNameError,lerrorm.getUserNameError());</span>
+<span class="fc" id="L33">		assertEquals(passwordError,lerrorm.getPasswordError());</span>
+		/*assertTrue(errorMsg.equals(lerrorm.getErrorMsg()));
+		assertTrue(userNameError.equals(lerrorm.getUserNameError()));
+		assertTrue(passwordError.equals(lerrorm.getPasswordError()));*/
+<span class="fc" id="L37">	}</span>
+}
+
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span>Merged (30 Apr, 2019 8:33:45 AM)</div></body></html>

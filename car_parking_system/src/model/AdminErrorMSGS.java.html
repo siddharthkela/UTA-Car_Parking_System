@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>AdminErrorMSGS.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Merged (30 Apr, 2019 8:33:45 AM)</a> &gt; <a href="../../index.html" class="el_group">car_parking_system</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">model</a> &gt; <span class="el_source">AdminErrorMSGS.java</span></div><h1>AdminErrorMSGS.java</h1><pre class="source lang-java linenums">package model;
+public class AdminErrorMSGS {
+	
+	private String errorMsg;
+	private String user_nameError;
+	private String passwordError;
+	private String firstnameError;
+	private String lastnameError;
+	private String roleError;
+	private String phoneError;
+	private String emailError;
+	private String addressError;
+	private String parkingpermittypeError;
+	private String vehiclenumberError;
+	private String licensenumberError;
+	private String dobError;
+	
+
+<span class="fc" id="L19">	public AdminErrorMSGS() {</span>
+<span class="fc" id="L20">		this.errorMsg=&quot;&quot;;</span>
+<span class="fc" id="L21">		this.user_nameError=&quot;&quot;;	</span>
+<span class="fc" id="L22">		this.passwordError=&quot;&quot;;</span>
+<span class="fc" id="L23">		this.firstnameError=&quot;&quot;;</span>
+<span class="fc" id="L24">		this.lastnameError=&quot;&quot;;</span>
+<span class="fc" id="L25">		this.roleError=&quot;&quot;;</span>
+<span class="fc" id="L26">		this.phoneError=&quot;&quot;;</span>
+<span class="fc" id="L27">		this.emailError=&quot;&quot;;</span>
+<span class="fc" id="L28">		this.addressError=&quot;&quot;;</span>
+<span class="fc" id="L29">		this.parkingpermittypeError=&quot;&quot;;</span>
+<span class="fc" id="L30">		this.vehiclenumberError=&quot;&quot;;</span>
+<span class="fc" id="L31">		this.licensenumberError=&quot;&quot;;</span>
+<span class="fc" id="L32">		this.dobError=&quot;&quot;;</span>
+		
+		
+<span class="fc" id="L35">	}</span>
+	public void 	setErrorMsg(String action) {
+<span class="fc bfc" id="L37" title="All 2 branches covered.">		if (action.equals(&quot;searchCompany&quot;)) {</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">			if (!user_nameError.equals(&quot;&quot;) )</span>
+<span class="fc" id="L39">			this.errorMsg=&quot;Please correct the following errors&quot;;</span>
+		}		
+<span class="fc" id="L41">	}</span>
+	public String getErrorMsg() {
+<span class="fc" id="L43">		return errorMsg;</span>
+	}
+	public String getUser_nameError() {
+<span class="fc" id="L46">		return user_nameError;</span>
+	}
+
+	public void setUser_nameError(String user_nameError) {
+<span class="fc" id="L50">		this.user_nameError = user_nameError;</span>
+<span class="fc" id="L51">	}</span>
+	public String getPasswordError() {
+<span class="fc" id="L53">		return passwordError;</span>
+	}
+	public void setPasswordError(String passwordError) {
+<span class="fc" id="L56">		this.passwordError = passwordError;</span>
+<span class="fc" id="L57">	}</span>
+	public String getFirstnameError() {
+<span class="fc" id="L59">		return firstnameError;</span>
+	}
+	public void setFirstnameError(String firstnameError) {
+<span class="fc" id="L62">		this.firstnameError = firstnameError;</span>
+<span class="fc" id="L63">	}</span>
+	public String getLastnameError() {
+<span class="fc" id="L65">		return lastnameError;</span>
+	}
+	public void setLastnameError(String lastnameError) {
+<span class="fc" id="L68">		this.lastnameError = lastnameError;</span>
+<span class="fc" id="L69">	}</span>
+	public String getRoleError() {
+<span class="fc" id="L71">		return roleError;</span>
+	}
+	public void setRoleError(String roleError) {
+<span class="nc" id="L74">		this.roleError = roleError;</span>
+<span class="nc" id="L75">	}</span>
+	public String getPhoneError() {
+<span class="fc" id="L77">		return phoneError;</span>
+	}
+	public void setPhoneError(String phoneError) {
+<span class="fc" id="L80">		this.phoneError = phoneError;</span>
+<span class="fc" id="L81">	}</span>
+	public String getEmailError() {
+<span class="fc" id="L83">		return emailError;</span>
+	}
+	public void setEmailError(String emailError) {
+<span class="fc" id="L86">		this.emailError = emailError;</span>
+<span class="fc" id="L87">	}</span>
+	public String getAddressError() {
+<span class="fc" id="L89">		return addressError;</span>
+	}
+	public void setAddressError(String addressError) {
+<span class="fc" id="L92">		this.addressError = addressError;</span>
+<span class="fc" id="L93">	}</span>
+	public String getParkingpermittypeError() {
+<span class="fc" id="L95">		return parkingpermittypeError;</span>
+	}
+	public void setParkingpermittypeError(String parkingpermittypeError) {
+<span class="fc" id="L98">		this.parkingpermittypeError = parkingpermittypeError;</span>
+<span class="fc" id="L99">	}</span>
+	public String getVehiclenumberError() {
+<span class="fc" id="L101">		return vehiclenumberError;</span>
+	}
+	public void setVehiclenumberError(String vehiclenumberError) {
+<span class="fc" id="L104">		this.vehiclenumberError = vehiclenumberError;</span>
+<span class="fc" id="L105">	}</span>
+	public String getLicensenumberError() {
+<span class="fc" id="L107">		return licensenumberError;</span>
+	}
+	public void setLicensenumberError(String licensenumberError) {
+<span class="fc" id="L110">		this.licensenumberError = licensenumberError;</span>
+<span class="fc" id="L111">	}</span>
+	public String getDobError() {
+<span class="fc" id="L113">		return dobError;</span>
+	}
+	public void setDateofBirthError(String dobError) {
+<span class="fc" id="L116">		this.dobError = dobError;</span>
+<span class="fc" id="L117">	}</span>
+	
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span>Merged (30 Apr, 2019 8:33:45 AM)</div></body></html>

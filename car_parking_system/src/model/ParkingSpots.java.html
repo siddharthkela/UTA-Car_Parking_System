@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>ParkingSpots.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Merged (30 Apr, 2019 8:33:45 AM)</a> &gt; <a href="../../index.html" class="el_group">car_parking_system</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">model</a> &gt; <span class="el_source">ParkingSpots.java</span></div><h1>ParkingSpots.java</h1><pre class="source lang-java linenums">package model;
+
+import java.io.Serializable;
+
+<span class="fc" id="L5">public class ParkingSpots implements Serializable{</span>
+	
+	private static final long serialVersionUID = 3L;
+<span class="fc" id="L8">	private String parking_Area = &quot;&quot;;</span>
+<span class="fc" id="L9">	private String parking_Number= &quot;&quot;;</span>
+<span class="fc" id="L10">	private String membership_type = &quot;&quot;;</span>
+	
+	
+	public void setParkingSpots (String parking_Area, String parking_Number,String membership_type) {
+<span class="fc" id="L14">		setParking_Area(parking_Area);</span>
+<span class="fc" id="L15">		setParking_Number(parking_Number);</span>
+<span class="fc" id="L16">		setMembership_type(membership_type);</span>
+	
+<span class="fc" id="L18">	}</span>
+
+	public String getParking_Area() {
+<span class="fc" id="L21">		return parking_Area;</span>
+	}
+
+	public void setParking_Area(String parking_Area) {
+<span class="fc" id="L25">		this.parking_Area = parking_Area;</span>
+<span class="fc" id="L26">	}</span>
+
+	public String getParking_Number() {
+<span class="fc" id="L29">		return parking_Number;</span>
+	}
+
+	public void setParking_Number(String parking_Number) {
+<span class="fc" id="L33">		this.parking_Number = parking_Number;</span>
+<span class="fc" id="L34">	}</span>
+
+	public String getMembership_type() {
+<span class="fc" id="L37">		return membership_type;</span>
+	}
+
+	public void setMembership_type(String membership_type) {
+<span class="fc" id="L41">		this.membership_type = membership_type;</span>
+<span class="fc" id="L42">	}</span>
+	
+
+	public void validateParkingSpots (String action, ParkingSpots parkingspots, ParkingSpotsErrorMsgs pserrorMsgs){
+		
+<span class="fc bfc" id="L47" title="All 2 branches covered.">		if (action.equals(&quot;setStatus&quot;)) {</span>
+<span class="fc" id="L48">			pserrorMsgs.setParking_AreaError(validateParking_Area(parkingspots.getParking_Area()));</span>
+<span class="fc" id="L49">			pserrorMsgs.setParking_NumberError(validateParking_Number(parkingspots.getParking_Number()));</span>
+<span class="fc" id="L50">			pserrorMsgs.setMembership_typeError(validateMembership_type(parkingspots.getMembership_type()));</span>
+<span class="fc" id="L51">			pserrorMsgs.setErrorMsg(action);</span>
+		} 
+<span class="fc" id="L53">	}</span>
+	
+	private String validateParking_Area(String parking_Area) {
+<span class="fc" id="L56">		String result=&quot;&quot;;</span>
+<span class="fc bfc" id="L57" title="All 2 branches covered.">		if(parking_Area.equals(&quot;&quot;)){</span>
+<span class="fc" id="L58">			result = &quot;Parking Area cannot be blank&quot;;</span>
+		}
+<span class="fc" id="L60">		return result;		</span>
+	}
+	
+	private String validateParking_Number(String parking_Number) {
+<span class="fc" id="L64">		String result = &quot;&quot;;</span>
+<span class="fc" id="L65">		parking_Number = parking_Number.trim();</span>
+<span class="fc bfc" id="L66" title="All 2 branches covered.">		if(parking_Number.equals(&quot;&quot;)){</span>
+<span class="fc" id="L67">			result = &quot;Parking Number cannot be blank&quot;;</span>
+<span class="fc" id="L68">		}</span>
+		else
+<span class="fc bfc" id="L70" title="All 2 branches covered.">			if (!isTextAnInteger(parking_Number))</span>
+<span class="fc" id="L71">				result=&quot;Parking Number must be a number&quot;;</span>
+<span class="fc" id="L72">		return result;</span>
+	}
+	
+	private String validateMembership_type(String membership_type){
+<span class="fc" id="L76">		String result = &quot;&quot;;</span>
+<span class="fc bfc" id="L77" title="All 6 branches covered.">		if (!membership_type.equals(&quot;basic&quot;) &amp;&amp; !membership_type.equals(&quot;premium&quot;) &amp;&amp; !membership_type.equals(&quot;midrange&quot;) </span>
+<span class="fc bfc" id="L78" title="All 2 branches covered.">				&amp;&amp; !membership_type.equals(&quot;access&quot;)){</span>
+<span class="fc" id="L79">			result = &quot;Parking Type should be one of Basic Premium Midrange Access&quot;;</span>
+		}
+<span class="fc" id="L81">		return result;</span>
+	}
+	
+	
+	
+	private boolean isTextAnInteger (String string) {
+        boolean result;
+		try
+        {
+<span class="fc" id="L90">            Long.parseLong(string);</span>
+<span class="fc" id="L91">            result=true;</span>
+<span class="fc" id="L92">        } </span>
+<span class="fc" id="L93">        catch (NumberFormatException e) </span>
+        {
+<span class="fc" id="L95">            result=false;</span>
+        }
+<span class="fc" id="L97">		return result;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span>Merged (30 Apr, 2019 8:33:45 AM)</div></body></html>

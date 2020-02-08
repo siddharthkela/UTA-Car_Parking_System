@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>Login.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Merged (30 Apr, 2019 8:33:45 AM)</a> &gt; <a href="../../index.html" class="el_group">car_parking_system</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">model</a> &gt; <span class="el_source">Login.java</span></div><h1>Login.java</h1><pre class="source lang-java linenums">package model;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+
+import data.UserDaoImple;
+import model.Login;
+import model.LoginErrorMsgs;
+
+<span class="fc" id="L10">public class Login implements Serializable{</span>
+	private static final long serialVersionUID = 3L;
+<span class="fc" id="L12">	private String username = &quot;&quot;; </span>
+<span class="fc" id="L13">	private String password = &quot;&quot;;</span>
+	
+	public void setLogin (String username, String password) {
+<span class="fc" id="L16">		setUsername(username);</span>
+<span class="fc" id="L17">		setPassword(password);</span>
+<span class="fc" id="L18">	} </span>
+
+	public String getPassword() {
+<span class="fc" id="L21">		return password; </span>
+	}
+
+	public void setPassword(String password) {
+<span class="fc" id="L25">		this.password = password;</span>
+<span class="fc" id="L26">	}</span>
+
+
+	public String getUsername() {
+<span class="fc" id="L30">		return username;</span>
+	}
+
+	public void setUsername(String username) { 
+<span class="fc" id="L34">		this.username = username;</span>
+<span class="fc" id="L35">	}</span>
+	
+	public void validateLogin(String action, Login login, LoginErrorMsgs lerrorMsgs) {
+<span class="fc bfc" id="L38" title="All 2 branches covered.">		if(action.equals(&quot;loginUser&quot;)) {</span>
+<span class="fc" id="L39">			lerrorMsgs.setUserNameError(validateUser_name(login.getUsername()));</span>
+<span class="fc" id="L40">			lerrorMsgs.setPasswordError(validatePassword(login.getPassword()));</span>
+<span class="fc" id="L41">			lerrorMsgs.setErrorMsg(action);</span>
+		}
+<span class="fc" id="L43">	} </span>
+	 
+	public String validateUser_name(String username) {
+		
+<span class="fc" id="L47">		String result = &quot;&quot;;</span>
+<span class="fc bfc" id="L48" title="All 2 branches covered.">		if(username.equals(&quot;&quot;))</span>
+		{
+<span class="fc" id="L50">			result = &quot;Username cannot be Null&quot;;</span>
+<span class="fc" id="L51">		}</span>
+		else{
+<span class="fc" id="L53">		ArrayList&lt;USER&gt; UserInDB = new ArrayList&lt;USER&gt;();</span>
+<span class="fc" id="L54">		username = username.trim();</span>
+<span class="fc" id="L55">		UserInDB=UserDaoImple.getUserByuserName(username);</span>
+<span class="fc bfc" id="L56" title="All 2 branches covered.">		if(UserInDB.isEmpty()){</span>
+<span class="fc" id="L57">			result = &quot;Username does not exist&quot;;</span>
+		}
+		}
+<span class="fc" id="L60">		return result;</span>
+	}
+	
+	public String validatePassword(String password) {
+<span class="fc" id="L64">		String result = &quot;&quot;;</span>
+<span class="fc bfc" id="L65" title="All 2 branches covered.">		if(password.equals(&quot;&quot;))</span>
+		{
+<span class="fc" id="L67">			result = &quot;Password cannot be Null&quot;;</span>
+<span class="fc" id="L68">		}</span>
+		else{
+<span class="fc" id="L70">		ArrayList&lt;USER&gt; UserInDB = new ArrayList&lt;USER&gt;();</span>
+<span class="fc" id="L71">		password = password.trim();</span>
+<span class="fc" id="L72">		UserInDB=UserDaoImple.getUserByPassword(password);</span>
+<span class="fc bfc" id="L73" title="All 2 branches covered.">		if(UserInDB.isEmpty()){ </span>
+<span class="fc" id="L74">			result = &quot;Invalid password&quot;;</span>
+		}
+		}
+<span class="fc" id="L77">		return result;</span>
+	}	
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span>Merged (30 Apr, 2019 8:33:45 AM)</div></body></html>

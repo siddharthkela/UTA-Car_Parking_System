@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>UpdateUserErrorMsgs.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Imported (15 Apr, 2019 11:01:55 PM)</a> &gt; <a href="../../index.html" class="el_group">car_parking_system</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">model</a> &gt; <span class="el_source">UpdateUserErrorMsgs.java</span></div><h1>UpdateUserErrorMsgs.java</h1><pre class="source lang-java linenums">package model;
+
+public class UpdateUserErrorMsgs {
+	private String errorMsg;
+	private String userNameError;
+	public String getUserNameError() {
+<span class="nc" id="L7">		return userNameError;</span>
+	}
+
+	public void setUserNameError(String userNameError) {
+<span class="nc" id="L11">		this.userNameError = userNameError;</span>
+<span class="nc" id="L12">	}</span>
+
+	private String firstNameError;
+	private String lastNameError;
+	private String passwordError;
+	private String confirmPasswordError;
+	private String phoneError;
+	private String dobError;
+	private String ageError;
+	private String countryError;
+	private String addressError;
+	private String cityError;
+	private String stateError;
+	private String pinError;
+	private String dlExpError;
+	private String dlCountryError;
+	
+<span class="nc" id="L29">	public UpdateUserErrorMsgs() {</span>
+<span class="nc" id="L30">		this.errorMsg = &quot;&quot;;</span>
+<span class="nc" id="L31">		this.userNameError = &quot;&quot;;</span>
+<span class="nc" id="L32">		this.firstNameError = &quot;&quot;;</span>
+<span class="nc" id="L33">		this.lastNameError = &quot;&quot;;</span>
+<span class="nc" id="L34">		this.passwordError = &quot;&quot;;</span>
+<span class="nc" id="L35">		this.confirmPasswordError = &quot;&quot;;</span>
+<span class="nc" id="L36">		this.phoneError = &quot;&quot;;</span>
+<span class="nc" id="L37">		this.dobError = &quot;&quot;;</span>
+<span class="nc" id="L38">		this.ageError = &quot;&quot;;</span>
+<span class="nc" id="L39">		this.countryError = &quot;&quot;;</span>
+<span class="nc" id="L40">		this.addressError = &quot;&quot;;</span>
+<span class="nc" id="L41">		this.cityError = &quot;&quot;;</span>
+<span class="nc" id="L42">		this.stateError = &quot;&quot;;</span>
+<span class="nc" id="L43">		this.pinError = &quot;&quot;;</span>
+<span class="nc" id="L44">		this.dlExpError = &quot;&quot;;</span>
+<span class="nc" id="L45">		this.dlCountryError = &quot;&quot;;</span>
+<span class="nc" id="L46">	}</span>
+	
+	public String getErrorMsg() {
+<span class="nc" id="L49">		return errorMsg;</span>
+	}
+	
+	public void setErrorMsg(String action) {
+<span class="nc bnc" id="L53" title="All 2 branches missed.">		if(action.equals(&quot;updateUser&quot;)) {</span>
+<span class="nc bnc" id="L54" title="All 30 branches missed.">			if(!userNameError.equals(&quot;&quot;) ||!firstNameError.equals(&quot;&quot;) || !lastNameError.equals(&quot;&quot;) || !passwordError.equals(&quot;&quot;) || !confirmPasswordError.equals(&quot;&quot;) || !phoneError.equals(&quot;&quot;) || !dobError.equals(&quot;&quot;) || !ageError.equals(&quot;&quot;) || !countryError.equals(&quot;&quot;) || !addressError.equals(&quot;&quot;) || !cityError.equals(&quot;&quot;) || !stateError.equals(&quot;&quot;) || !pinError.equals(&quot;&quot;) || !dlExpError.equals(&quot;&quot;) || !dlCountryError.equals(&quot;&quot;))</span>
+<span class="nc" id="L55">				this.errorMsg = &quot;Please correct the following errors&quot;;</span>
+		}
+<span class="nc" id="L57">	}</span>
+	
+	public String getFirstNameError() {
+<span class="nc" id="L60">		return firstNameError;</span>
+	}
+	
+	public void setFirstNameError(String firstNameError) {
+<span class="nc" id="L64">		this.firstNameError = firstNameError;</span>
+<span class="nc" id="L65">	}</span>
+	
+	public void setLastNameError(String lastNameError) {
+<span class="nc" id="L68">		this.lastNameError = lastNameError;</span>
+<span class="nc" id="L69">	}</span>
+	
+	public String getLastNameError() {
+<span class="nc" id="L72">		return lastNameError;</span>
+	}
+	
+	public void setPasswordError(String passwordError) {
+<span class="nc" id="L76">		this.passwordError = passwordError;</span>
+<span class="nc" id="L77">	}</span>
+	
+	public String getPasswordError() {
+<span class="nc" id="L80">		return passwordError;</span>
+	}
+	
+	public void setConfirmPasswordError(String confirmPasswordError) {
+<span class="nc" id="L84">		this.confirmPasswordError = confirmPasswordError;</span>
+<span class="nc" id="L85">	}</span>
+	
+	public String getConfirmPasswordError() {
+<span class="nc" id="L88">		return confirmPasswordError;</span>
+	}
+	
+	public void setPhoneError(String phoneError) {
+<span class="nc" id="L92">		this.phoneError = phoneError;</span>
+<span class="nc" id="L93">	}</span>
+	
+	public String getPhoneError() {
+<span class="nc" id="L96">		return phoneError;</span>
+	}
+	
+	public void setDobError(String dobError) {
+<span class="nc" id="L100">		this.dobError = dobError;</span>
+<span class="nc" id="L101">	}</span>
+	
+	public String getDobError() {
+<span class="nc" id="L104">		return dobError;</span>
+	}
+	
+	public void setAgeError(String ageError) {
+<span class="nc" id="L108">		this.ageError = ageError;</span>
+<span class="nc" id="L109">	}</span>
+	
+	public String getAgeError() {
+<span class="nc" id="L112">		return ageError;</span>
+	}
+	
+	public void setCountryError(String countryError) {
+<span class="nc" id="L116">		this.countryError = countryError;</span>
+<span class="nc" id="L117">	}</span>
+	
+	public String getCountryError() {
+<span class="nc" id="L120">		return countryError;</span>
+	}
+	
+	public void setAddressError(String addressError) {
+<span class="nc" id="L124">		this.addressError = addressError;</span>
+<span class="nc" id="L125">	}</span>
+	
+	public String getAddressError() {
+<span class="nc" id="L128">		return addressError;</span>
+	}
+	
+	public void setCityError(String cityError) {
+<span class="nc" id="L132">		this.cityError = cityError;</span>
+<span class="nc" id="L133">	}</span>
+	
+	public String getCityError() {
+<span class="nc" id="L136">		return cityError;</span>
+	}
+	
+	public void setStateError(String stateError) {
+<span class="nc" id="L140">		this.stateError = stateError;</span>
+<span class="nc" id="L141">	}</span>
+	
+	public String getStateError() {
+<span class="nc" id="L144">		return stateError;</span>
+	}
+	
+	public void setPinError(String pinError) {
+<span class="nc" id="L148">		this.pinError = pinError;</span>
+<span class="nc" id="L149">	}</span>
+	
+	public String getPinError() {
+<span class="nc" id="L152">		return pinError;</span>
+	}
+	public void setDlExpError(String dlExpError) {
+<span class="nc" id="L155">		this.dlExpError = dlExpError;</span>
+<span class="nc" id="L156">	}</span>
+	
+	public String getDlExpError() {
+<span class="nc" id="L159">		return dlExpError;</span>
+	}
+	
+	public void setDlCountryError(String dlCountryError) {
+<span class="nc" id="L163">		this.dlCountryError = dlCountryError;</span>
+<span class="nc" id="L164">	}</span>
+	
+	public String getDlCountryError() {
+<span class="nc" id="L167">		return dlCountryError;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span>Imported (15 Apr, 2019 11:01:55 PM)</div></body></html>

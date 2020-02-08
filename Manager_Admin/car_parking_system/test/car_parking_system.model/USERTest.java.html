@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>USERTest.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Merged (30 Apr, 2019 8:33:45 AM)</a> &gt; <a href="../../index.html" class="el_group">car_parking_system</a> &gt; <a href="../index.html" class="el_bundle">test</a> &gt; <a href="index.source.html" class="el_package">car_parking_system.model</a> &gt; <span class="el_source">USERTest.java</span></div><h1>USERTest.java</h1><pre class="source lang-java linenums">package car_parking_system.model;
+
+import static org.junit.Assert.*;
+import junitparams.FileParameters;
+import junitparams.JUnitParamsRunner;
+import model.USER;
+import model.AdminErrorMSGS;
+
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.assertTrue;
+import org.junit.runner.RunWith;
+
+@RunWith(JUnitParamsRunner.class)
+<span class="fc" id="L15">public class USERTest {</span>
+	
+	USER us;
+	AdminErrorMSGS adm;
+	
+	@Before
+	public void setUp() throws Exception {
+		
+<span class="fc" id="L23">		us = new USER();</span>
+<span class="fc" id="L24">		adm = new AdminErrorMSGS();</span>
+<span class="fc" id="L25">	}</span>
+
+	@Test
+	@FileParameters(&quot;test/SearchUser.csv&quot;)
+	public void test(int testcaseNo, String action, String username, String password,String firstname, String lastname,  String role, String phone, String email,String address, String parkingpermittype, String vehiclenumber,String licensenumber, String DateofBirth, String errorMsg, String user_nameError, String passwordError, String firstnameError, String lastnameError, String roleError,String phoneError,String emailError,String addressError,String parkingpermittypeError,String vehiclenumberError,String licensenumberError,String dobError){
+	
+<span class="fc" id="L31">		us.setUSER(username, password, firstname, lastname, role, phone, email, address, parkingpermittype, vehiclenumber, licensenumber, DateofBirth);</span>
+<span class="fc" id="L32">		us.validateUSER(action,us,adm);</span>
+		/*assertTrue(errorMsg.equals(adm.getErrorMsg()));*/
+		//assertTrue(user_nameError.equals(adm.getUser_nameError()));
+<span class="fc" id="L35">		assertEquals(user_nameError,adm.getUser_nameError());</span>
+<span class="fc" id="L36">		assertEquals(passwordError,adm.getPasswordError());</span>
+<span class="fc" id="L37">		assertEquals(firstnameError,adm.getFirstnameError());</span>
+<span class="fc" id="L38">		assertEquals(lastnameError,adm.getLastnameError());</span>
+<span class="fc" id="L39">		assertEquals(roleError,adm.getRoleError());</span>
+<span class="fc" id="L40">		assertEquals(phoneError,adm.getPhoneError());</span>
+<span class="fc" id="L41">		assertEquals(emailError,adm.getEmailError());</span>
+<span class="fc" id="L42">		assertEquals(addressError,adm.getAddressError());</span>
+<span class="fc" id="L43">		assertEquals(parkingpermittypeError,adm.getParkingpermittypeError());</span>
+<span class="fc" id="L44">		assertEquals(vehiclenumberError,adm.getVehiclenumberError());</span>
+<span class="fc" id="L45">		assertEquals(licensenumberError,adm.getLicensenumberError());</span>
+<span class="fc" id="L46">		assertEquals(dobError,adm.getDobError());</span>
+<span class="fc" id="L47">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span>Merged (30 Apr, 2019 8:33:45 AM)</div></body></html>

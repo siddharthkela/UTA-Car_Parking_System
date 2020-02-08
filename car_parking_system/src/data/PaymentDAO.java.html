@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>PaymentDAO.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Imported (15 Apr, 2019 11:01:55 PM)</a> &gt; <a href="../../index.html" class="el_group">car_parking_system</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">data</a> &gt; <span class="el_source">PaymentDAO.java</span></div><h1>PaymentDAO.java</h1><pre class="source lang-java linenums">package data;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+
+import model.Payment;
+
+import util.MyConnectionProvider;
+
+
+<span class="nc" id="L14">public class PaymentDAO {</span>
+
+	public static void StorePaymentInDB (Payment payment,String queryString){
+<span class="nc" id="L17">		Statement stmt = null;</span>
+<span class="nc" id="L18">		Connection conn = MyConnectionProvider.getDBConnection();</span>
+		try {
+<span class="nc" id="L20">			stmt = conn.createStatement();</span>
+			
+<span class="nc" id="L22">			String insertPayment = queryString + &quot; VALUES ('&quot;  </span>
+<span class="nc" id="L23">					+ payment.getName()  + &quot;','&quot;</span>
+<span class="nc" id="L24">					+ payment.getUsername() + &quot;','&quot;		</span>
+<span class="nc" id="L25">					+ payment.getCardnumber() + &quot;','&quot;</span>
+<span class="nc" id="L26">					+ payment.getCvv() + &quot;','&quot;</span>
+<span class="nc" id="L27">					+ payment.getExpirydate() + &quot;',&quot;</span>
+<span class="nc" id="L28">					+ payment.getDeductable() + &quot;)&quot;;</span>
+<span class="nc" id="L29">			stmt.executeUpdate(insertPayment);	</span>
+<span class="nc" id="L30">			conn.commit(); </span>
+<span class="nc" id="L31">		} catch (SQLException e) {			</span>
+<span class="nc" id="L32">			e.printStackTrace();</span>
+		} finally {
+			try {
+<span class="nc" id="L35">				conn.close();</span>
+<span class="nc" id="L36">				stmt.close();</span>
+<span class="nc" id="L37">			} catch (SQLException e) {</span>
+				
+<span class="nc" id="L39">				e.printStackTrace();</span>
+			}};
+		
+<span class="nc" id="L42">	}</span>
+	
+	public static void insertPayment(Payment payment){  
+<span class="nc" id="L45">		StorePaymentInDB(payment,&quot;INSERT INTO Payments (name, username, cardnumber, cvv, expirydate,deductable) &quot;);</span>
+<span class="nc" id="L46">	} </span>
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span>Imported (15 Apr, 2019 11:01:55 PM)</div></body></html>

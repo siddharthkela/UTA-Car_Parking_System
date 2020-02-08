@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>UsersDAO.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Imported (15 Apr, 2019 11:01:55 PM)</a> &gt; <a href="../../index.html" class="el_group">car_parking_system</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">data</a> &gt; <span class="el_source">UsersDAO.java</span></div><h1>UsersDAO.java</h1><pre class="source lang-java linenums">package data;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+
+import model.S_User;
+import util.MyConnectionProvider;
+
+<span class="nc" id="L12">public class UsersDAO {</span>
+<span class="nc" id="L13">	static Connection conn = MyConnectionProvider.getDBConnection();</span>
+	
+	private static ArrayList&lt;S_User&gt; ReturnMatchingUsersList (String queryString){
+<span class="nc" id="L16">		ArrayList&lt;S_User&gt; userListInDB = new ArrayList&lt;S_User&gt;();</span>
+		
+<span class="nc" id="L18">		Statement stmt = null;</span>
+		
+	try {
+<span class="nc" id="L21">		stmt = conn.createStatement();</span>
+<span class="nc" id="L22">		ResultSet userList = stmt.executeQuery(queryString);</span>
+<span class="nc bnc" id="L23" title="All 2 branches missed.">		while (userList.next()) {</span>
+<span class="nc" id="L24">			S_User user = new S_User(); </span>
+<span class="nc" id="L25">			user.setPrefix(userList.getString(&quot;prefix&quot;));</span>
+<span class="nc" id="L26">			user.setUsername(userList.getString(&quot;user_name&quot;));</span>
+<span class="nc" id="L27">			user.setFirstname(userList.getString(&quot;firstname&quot;));</span>
+<span class="nc" id="L28">			user.setLastname(userList.getString(&quot;lastname&quot;));</span>
+<span class="nc" id="L29">			user.setUtaid(userList.getString(&quot;utaid&quot;));</span>
+<span class="nc" id="L30">			user.setEmail(userList.getString(&quot;email&quot;));</span>
+<span class="nc" id="L31">			user.setPassword(userList.getString(&quot;password&quot;));</span>
+<span class="nc" id="L32">			user.setPhone(userList.getString(&quot;phone&quot;));</span>
+<span class="nc" id="L33">			user.setDob(userList.getString(&quot;dob&quot;));</span>
+<span class="nc" id="L34">			user.setAge(userList.getString(&quot;age&quot;));</span>
+<span class="nc" id="L35">			user.setCountry(userList.getString(&quot;country&quot;));</span>
+<span class="nc" id="L36">			user.setAddress(userList.getString(&quot;address&quot;));</span>
+<span class="nc" id="L37">			user.setCity(userList.getString(&quot;city&quot;));</span>
+<span class="nc" id="L38">			user.setState(userList.getString(&quot;state&quot;));</span>
+<span class="nc" id="L39">			user.setPin(userList.getString(&quot;pin&quot;));</span>
+<span class="nc" id="L40">			user.setDlnumber(userList.getString(&quot;dlnumber&quot;));</span>
+<span class="nc" id="L41">			user.setDlexp(userList.getString(&quot;dlexp&quot;));</span>
+<span class="nc" id="L42">			user.setDlcountry(userList.getString(&quot;dlcountry&quot;));</span>
+<span class="nc" id="L43">			user.setPermittype(userList.getString(&quot;permittype&quot;));</span>
+<span class="nc" id="L44">			user.setUserrole(userList.getString(&quot;userrole&quot;)); </span>
+<span class="nc" id="L45">			user.setUserrole(userList.getString(&quot;noshow&quot;)); </span>
+<span class="nc" id="L46">			userListInDB.add(user);	</span>
+		}
+<span class="nc" id="L48">	} catch (SQLException e) {</span>
+<span class="nc" id="L49">		e.printStackTrace();</span>
+	} finally {
+		try {
+<span class="nc" id="L52">			conn.close();</span>
+<span class="nc" id="L53">			stmt.close();</span>
+<span class="nc" id="L54">		} catch (SQLException e) {</span>
+<span class="nc" id="L55">			e.printStackTrace();</span>
+		};
+	}
+<span class="nc" id="L58">	return userListInDB;</span>
+	}
+	
+	public static void StoreUserInDB (S_User user,String queryString){
+<span class="nc" id="L62">		Statement stmt = null;</span>
+<span class="nc" id="L63">		Connection conn = MyConnectionProvider.getDBConnection();  </span>
+		try {
+<span class="nc" id="L65">			stmt = conn.createStatement();</span>
+			
+<span class="nc" id="L67">			String insertUser = queryString + &quot; VALUES ('&quot;  </span>
+<span class="nc" id="L68">					+ user.getPrefix()  + &quot;','&quot;</span>
+<span class="nc" id="L69">					+ user.getFirstname() + &quot;','&quot;		</span>
+<span class="nc" id="L70">					+ user.getLastname() + &quot;','&quot;</span>
+<span class="nc" id="L71">					+ user.getUtaid() + &quot;','&quot;</span>
+<span class="nc" id="L72">					+ user.getUsername() + &quot;','&quot;</span>
+<span class="nc" id="L73">					+ user.getEmail() + &quot;','&quot;</span>
+<span class="nc" id="L74">					+ user.getPassword() + &quot;','&quot;</span>
+<span class="nc" id="L75">					+ user.getPhone() + &quot;','&quot;</span>
+<span class="nc" id="L76">					+ user.getDob() + &quot;','&quot;</span>
+<span class="nc" id="L77">					+ user.getAge() + &quot;','&quot;</span>
+<span class="nc" id="L78">					+ user.getCountry() + &quot;','&quot;</span>
+<span class="nc" id="L79">					+ user.getAddress() + &quot;','&quot;</span>
+<span class="nc" id="L80">					+ user.getCity() + &quot;','&quot;</span>
+<span class="nc" id="L81">					+ user.getState() + &quot;','&quot;</span>
+<span class="nc" id="L82">					+ user.getPin() + &quot;','&quot;</span>
+<span class="nc" id="L83">					+ user.getDlnumber() + &quot;','&quot;</span>
+<span class="nc" id="L84">					+ user.getDlexp() + &quot;','&quot;</span>
+<span class="nc" id="L85">					+ user.getDlcountry() + &quot;','&quot;</span>
+<span class="nc" id="L86">					+ user.getPermittype() + &quot;','&quot;</span>
+<span class="nc" id="L87">					+ user.getUserrole() + &quot;','&quot;</span>
+<span class="nc" id="L88">					+ user.getStatus() + &quot;')&quot;;</span>
+<span class="nc" id="L89">			stmt.executeUpdate(insertUser);	</span>
+<span class="nc" id="L90">			conn.commit(); </span>
+<span class="nc" id="L91">		} catch (SQLException e) {			</span>
+<span class="nc" id="L92">			e.printStackTrace();</span>
+		} finally {
+			try {
+<span class="nc" id="L95">				conn.close();</span>
+<span class="nc" id="L96">				stmt.close();</span>
+<span class="nc" id="L97">			} catch (SQLException e) {</span>
+				
+<span class="nc" id="L99">				e.printStackTrace();</span>
+			}};
+			
+<span class="nc" id="L102">	}</span>
+	public static void insertUser(S_User user){  
+<span class="nc" id="L104">		StoreUserInDB(user,&quot;INSERT INTO USER (prefix, firstname, lastname, utaid, username, email, password, phone, dob, age, country, address, city, state, pin, dlnumber, dlexp, dlcountry, permittype, userrole, status) &quot;);</span>
+<span class="nc" id="L105">	} </span>
+	public static Boolean UserNameunique(String username)  {  
+<span class="nc" id="L107">		return (ReturnMatchingUsersList(&quot; SELECT * from users WHERE user_name = '&quot;+username+&quot;' ORDER BY utaid&quot;).isEmpty());</span>
+	}
+	public static Boolean UserRoleunique(String userrole, String utaid)  {  
+<span class="nc" id="L110">		return (ReturnMatchingUsersList(&quot; SELECT * from users WHERE utaid = '&quot;+utaid+&quot;' and userrole = '&quot;+userrole+&quot;' ORDER BY utaid&quot;).isEmpty());</span>
+	}
+	public static Boolean Password(String password) {
+<span class="nc" id="L113">		return (ReturnMatchingUsersList(&quot; SELECT * from users WHERE password = '&quot;+password+&quot;'&quot;).isEmpty());</span>
+	}
+	public static ArrayList&lt;S_User&gt; getProfile(String username) {  
+<span class="nc" id="L116">		return ReturnMatchingUsersList(&quot; SELECT * from users WHERE username = '&quot;+username+&quot;'&quot;);</span>
+}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span>Imported (15 Apr, 2019 11:01:55 PM)</div></body></html>

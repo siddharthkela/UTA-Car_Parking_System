@@ -1,0 +1,10 @@
+1,setStatus,West Garage Floor 5,1,basic,,,,
+2,set,West Garage Floor 5,1,basic,,,,
+3,setStatus,,1,basic,Please correct the following errors,Parking Area cannot be blank,,
+4,setStatus,West Garage Floor 5,1,basically,Please correct the following errors,,,Parking Type should be one of Basic Premium Midrange Access
+5,setStatus,West Garage Floor 5,,basic,Please correct the following errors,,Parking Number cannot be blank,
+6,setStatus,West Garage Floor 5,string,basic,Please correct the following errors,,Parking Number must be a number,
+7,setStatus,West Garage Floor 5,1,premium,,,,
+8,setStatus,West Garage Floor 5,1,midrange,,,,
+9,setStatus,West Garage Floor 5,1,access,,,,
+10,setStatus,,,,Please correct the following errors,Parking Area cannot be blank,Parking Number cannot be blank,Parking Type should be one of Basic Premium Midrange Access

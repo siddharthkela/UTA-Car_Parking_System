@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>ParkingSpotsTest.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Merged (30 Apr, 2019 8:33:45 AM)</a> &gt; <a href="../../index.html" class="el_group">car_parking_system</a> &gt; <a href="../index.html" class="el_bundle">test</a> &gt; <a href="index.source.html" class="el_package">car_parking_system.model</a> &gt; <span class="el_source">ParkingSpotsTest.java</span></div><h1>ParkingSpotsTest.java</h1><pre class="source lang-java linenums">package car_parking_system.model;
+
+
+import junitparams.FileParameters;
+import junitparams.JUnitParamsRunner;
+import model.ParkingSpots;
+import model.ParkingSpotsErrorMsgs;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
+@RunWith(JUnitParamsRunner.class)
+<span class="fc" id="L17">public class ParkingSpotsTest {</span>
+	
+	ParkingSpots pk;
+	ParkingSpotsErrorMsgs pkr;
+
+	@Before
+	public void setUp() throws Exception { 
+		
+<span class="fc" id="L25">		pk = new ParkingSpots();</span>
+<span class="fc" id="L26">		pkr = new ParkingSpotsErrorMsgs(); </span>
+<span class="fc" id="L27">	}</span>
+
+	@Test
+	@FileParameters(&quot;test/ParkingSpotsTestCases.csv&quot;)
+	public void test(int testcaseNo,String action,String parking_Area, String parking_Number,String membership_type,String error,String parking_AreaError,String parking_NumberError,String membership_typeError) {
+		
+<span class="fc" id="L33">		pk.setParkingSpots(parking_Area, parking_Number, membership_type);</span>
+<span class="fc" id="L34">		pk.validateParkingSpots(action, pk, pkr);</span>
+<span class="fc" id="L35">		assertEquals(error,pkr.getErrorMsg());</span>
+<span class="fc" id="L36">		assertEquals(parking_AreaError,pkr.getParking_AreaError());</span>
+<span class="fc" id="L37">		assertEquals(parking_NumberError,pkr.getParking_NumberError());</span>
+<span class="fc" id="L38">		assertEquals(membership_typeError,pkr.getMembership_typeError());</span>
+	
+		
+<span class="fc" id="L41">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span>Merged (30 Apr, 2019 8:33:45 AM)</div></body></html>

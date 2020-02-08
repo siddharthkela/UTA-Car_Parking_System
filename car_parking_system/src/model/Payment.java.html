@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>Payment.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Imported (15 Apr, 2019 11:01:55 PM)</a> &gt; <a href="../../index.html" class="el_group">car_parking_system</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">model</a> &gt; <span class="el_source">Payment.java</span></div><h1>Payment.java</h1><pre class="source lang-java linenums">package model;
+
+import java.io.Serializable;
+import data.UsersDAO;
+import model.PaymentErrorMsgs;
+import java.util.*;
+import java.lang.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.Date;
+
+
+<span class="nc" id="L16">public class Payment implements Serializable{</span>
+	
+<span class="nc" id="L18">	private String name = &quot;&quot;;</span>
+<span class="nc" id="L19">	private String username = &quot;&quot;;</span>
+<span class="nc" id="L20">	private String cardnumber = &quot;&quot;;</span>
+<span class="nc" id="L21">	private String cardtype = &quot;&quot;;</span>
+<span class="nc" id="L22">	private String cvv=&quot;&quot;;</span>
+<span class="nc" id="L23">	private String expirydate=&quot;&quot;;</span>
+<span class="nc" id="L24">	private double deductable=0;</span>
+	
+	
+
+	public void setPayment (String name,String username,String cardnumber,String cardtype,String cvv,String expirydate,double deductable){
+<span class="nc" id="L29">		setName(name);</span>
+<span class="nc" id="L30">		setUsername(username);</span>
+<span class="nc" id="L31">		setCardnumber(cardnumber);</span>
+<span class="nc" id="L32">		setCardtype(cardtype);</span>
+<span class="nc" id="L33">		setCvv(cvv);</span>
+<span class="nc" id="L34">		setExpirydate(expirydate);</span>
+<span class="nc" id="L35">		setDeductable(deductable);</span>
+<span class="nc" id="L36">	}</span>
+
+	public double getDeductable() {
+<span class="nc" id="L39">		return deductable;</span>
+	}
+
+	public void setDeductable(double deductable) {
+<span class="nc" id="L43">		this.deductable = deductable;</span>
+<span class="nc" id="L44">	}</span>
+
+	public String getName() {
+<span class="nc" id="L47">		return name;</span>
+	}
+	public void setName(String name) {
+<span class="nc" id="L50">		this.name = name;</span>
+<span class="nc" id="L51">	}</span>
+	public String getUsername() {
+<span class="nc" id="L53">		return username;</span>
+	}
+	public void setUsername(String username) {
+<span class="nc" id="L56">		this.username = username;</span>
+<span class="nc" id="L57">	}</span>
+	public String getCardnumber() {
+<span class="nc" id="L59">		return cardnumber;</span>
+	}
+	public void setCardnumber(String cardnumber) {
+<span class="nc" id="L62">		this.cardnumber = cardnumber;</span>
+<span class="nc" id="L63">	}</span>
+	public String getCardtype() {
+<span class="nc" id="L65">		return cardtype;</span>
+	}
+	public void setCardtype(String cardtype) {
+<span class="nc" id="L68">		this.cardtype = cardtype;</span>
+<span class="nc" id="L69">	}</span>
+	public String getCvv() {
+<span class="nc" id="L71">		return cvv;</span>
+	}
+	public void setCvv(String cvv) {
+<span class="nc" id="L74">		this.cvv = cvv;</span>
+<span class="nc" id="L75">	}</span>
+	public String getExpirydate() {
+<span class="nc" id="L77">		return expirydate;</span>
+	}
+	public void setExpirydate(String expirydate) {
+<span class="nc" id="L80">		this.expirydate = expirydate;</span>
+<span class="nc" id="L81">	}</span>
+	
+	public void validatePayment (String action, Payment payment, PaymentErrorMsgs errorMsgs){
+<span class="nc bnc" id="L84" title="All 2 branches missed.">		if(action.equals(&quot;payahead&quot;)) {</span>
+<span class="nc" id="L85">			errorMsgs.setNamError(validateFirst_name(action,payment.getName()));</span>
+<span class="nc" id="L86">			errorMsgs.setCardnumberError(validateCardnumber(action, payment.getCardnumber()));</span>
+<span class="nc" id="L87">			errorMsgs.setCvvError(validateCvv(action, payment.getCvv()));</span>
+<span class="nc" id="L88">			errorMsgs.setExpirydateError(validateExpirydate(action,payment.getExpirydate()));</span>
+<span class="nc" id="L89">			errorMsgs.setErrorMsg(action);</span>
+			
+		}
+		
+<span class="nc" id="L93">	}</span>
+		private String validateFirst_name(String action, String name) {
+<span class="nc" id="L95">			String result = &quot;&quot;;</span>
+			
+<span class="nc" id="L97">			name = name.trim();</span>
+<span class="nc bnc" id="L98" title="All 2 branches missed.">			if(!stringSize(name,6,45))</span>
+<span class="nc" id="L99">				result = &quot;First Name must be between 6 and 45 characters&quot;;</span>
+<span class="nc bnc" id="L100" title="All 2 branches missed.">			else if(!name.matches(&quot;^[a-zA-Z]+ [a-zA-z]+$&quot;))</span>
+<span class="nc" id="L101">				result = &quot;First Name must contain only characters&quot;;</span>
+<span class="nc" id="L102">			return result;</span>
+	}
+		private String validateCardnumber(String action, String cardnumber) {
+<span class="nc" id="L105">			String result = &quot;&quot;;</span>
+<span class="nc" id="L106">			cardnumber = cardnumber.trim();</span>
+<span class="nc bnc" id="L107" title="All 2 branches missed.">			if(!stringSize(cardnumber,16))</span>
+<span class="nc" id="L108">				result = &quot;Card Number Name must have 16 digits&quot;;</span>
+<span class="nc bnc" id="L109" title="All 2 branches missed.">			else if(!cardnumber.matches(&quot;^[0-9]+$&quot;))</span>
+<span class="nc" id="L110">				result = &quot;Card Number must contain only digits&quot;;</span>
+<span class="nc" id="L111">			return result;</span>
+		}
+		private String validateCvv(String action, String cvv) {
+<span class="nc" id="L114">			String result = &quot;&quot;;</span>
+<span class="nc" id="L115">			cvv = cvv.trim();</span>
+			//System.out.println(&quot;*****&quot;+cvv);
+<span class="nc bnc" id="L117" title="All 2 branches missed.">			if(!stringSize(cvv,3,4))</span>
+<span class="nc" id="L118">				result = &quot;CVV must have 3 to 4 digits&quot;;</span>
+<span class="nc bnc" id="L119" title="All 2 branches missed.">			else if(!cvv.matches(&quot;^[0-9]+$&quot;))</span>
+<span class="nc" id="L120">				result = &quot;CVV must contain only digits&quot;;</span>
+<span class="nc" id="L121">			return result;</span>
+		}
+		private String validateExpirydate(String action, String expirydate) {
+<span class="nc" id="L124">			String result = &quot;&quot;;</span>
+<span class="nc" id="L125">			expirydate = expirydate.trim();</span>
+<span class="nc bnc" id="L126" title="All 2 branches missed.">			if(!expirydate.matches(&quot;^\\d{4}-\\d{2}$&quot;))</span>
+<span class="nc" id="L127">				result = &quot;Invalid date format&quot;;</span>
+<span class="nc" id="L128">			return result;</span>
+		}
+		
+		
+		private boolean stringSize(String string, int min, int max) {
+<span class="nc bnc" id="L133" title="All 4 branches missed.">			return string.length()&gt;=min &amp;&amp; string.length()&lt;=max;</span>
+		}
+		
+		private boolean stringSize(String string, int min) {
+<span class="nc bnc" id="L137" title="All 2 branches missed.">			return string.length()==min;</span>
+		}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span>Imported (15 Apr, 2019 11:01:55 PM)</div></body></html>

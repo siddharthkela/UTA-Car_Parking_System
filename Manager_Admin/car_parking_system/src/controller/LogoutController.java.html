@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>LogoutController.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Merged (30 Apr, 2019 8:33:45 AM)</a> &gt; <a href="../../index.html" class="el_group">car_parking_system</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">controller</a> &gt; <span class="el_source">LogoutController.java</span></div><h1>LogoutController.java</h1><pre class="source lang-java linenums">package controller;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+/**
+ * Servlet implementation class LogoutController
+ */
+@WebServlet(&quot;/LogoutController&quot;)
+<span class="fc" id="L16">public class LogoutController extends HttpServlet {</span>
+	private static final long serialVersionUID = 1L;
+        
+	 protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	    	
+<span class="fc" id="L21">	    	HttpSession session = request.getSession(false);</span>
+<span class="pc bpc" id="L22" title="1 of 2 branches missed.">	    	if (session != null) {</span>
+<span class="fc" id="L23">	    	    session.invalidate();</span>
+	    	}
+	    	
+<span class="fc" id="L26">	    	response.setContentType(&quot;text/html&quot;);</span>
+<span class="fc" id="L27">	    	Cookie loginCookie = null;</span>
+<span class="fc" id="L28">	    	Cookie[] cookies = request.getCookies();</span>
+<span class="pc bpc" id="L29" title="1 of 2 branches missed.">	    	if(cookies != null){</span>
+<span class="pc bpc" id="L30" title="1 of 2 branches missed.">	    	for(Cookie cookie : cookies){</span>
+<span class="pc bpc" id="L31" title="1 of 2 branches missed.">	    		if(cookie.getName().equals(&quot;user&quot;)){</span>
+<span class="fc" id="L32">	    			loginCookie = cookie;</span>
+<span class="fc" id="L33">	    			break;</span>
+	    		}
+
+	    	}
+	    	}
+<span class="pc bpc" id="L38" title="1 of 2 branches missed.">	    	if(loginCookie != null){</span>
+<span class="fc" id="L39">	    		loginCookie.setMaxAge(0);</span>
+<span class="fc" id="L40">	        	response.addCookie(loginCookie);</span>
+	    	}
+<span class="fc" id="L42">	    	response.sendRedirect(&quot;login.jsp&quot;);</span>
+<span class="fc" id="L43">	    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span>Merged (30 Apr, 2019 8:33:45 AM)</div></body></html>

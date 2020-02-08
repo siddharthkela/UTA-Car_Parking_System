@@ -1,0 +1,7 @@
+1,loginUser,admin,admin,,,
+2,loginUser,ghwvdu,admin,Please correct the following errors,Username does not exist,
+3,loginUser,,,Please correct the following errors,Username cannot be Null,Password cannot be Null
+4,loginUser,admin,,Please correct the following errors,,Password cannot be Null
+5,loginUser,,admin,Please correct the following errors,Username cannot be Null,
+6,login,,,,,
+7,loginUser,admin,hekwjr,Please correct the following errors,,Invalid password

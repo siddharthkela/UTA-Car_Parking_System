@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>ManagerTest.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Merged (30 Apr, 2019 8:33:45 AM)</a> &gt; <a href="../../index.html" class="el_group">car_parking_system</a> &gt; <a href="../index.html" class="el_bundle">test</a> &gt; <a href="index.source.html" class="el_package">selenium</a> &gt; <span class="el_source">ManagerTest.java</span></div><h1>ManagerTest.java</h1><pre class="source lang-java linenums">package selenium;
+
+import java.util.regex.Pattern;
+import java.util.concurrent.TimeUnit;
+import org.junit.*;
+import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.*;
+import org.openqa.selenium.*;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
+
+<span class="nc" id="L12">public class ManagerTest {</span>
+  private WebDriver driver;
+  private String baseUrl;
+<span class="nc" id="L15">  private boolean acceptNextAlert = true;</span>
+<span class="nc" id="L16">  private StringBuffer verificationErrors = new StringBuffer();</span>
+
+  @Before
+  public void setUp() throws Exception {
+<span class="nc" id="L20">	System.setProperty(&quot;webdriver.firefox.marionette&quot;, &quot;C:\\GeckoSelenium\\geckodriver.exe&quot;);</span>
+<span class="nc" id="L21">    driver = new FirefoxDriver();</span>
+<span class="nc" id="L22">    baseUrl = &quot;http://localhost:8079/&quot;;</span>
+<span class="nc" id="L23">    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);</span>
+<span class="nc" id="L24">  }</span>
+
+  @Test
+  public void testManager() throws Exception {
+<span class="nc" id="L28">    driver.get(baseUrl + &quot;/FirstProject/login.jsp&quot;);</span>
+<span class="nc" id="L29">    driver.findElement(By.linkText(&quot;Click here to register&quot;)).click();</span>
+<span class="nc" id="L30">    driver.findElement(By.id(&quot;firstname&quot;)).clear();</span>
+<span class="nc" id="L31">    driver.findElement(By.id(&quot;firstname&quot;)).sendKeys(&quot;Hari&quot;);</span>
+<span class="nc" id="L32">    driver.findElement(By.id(&quot;lastname&quot;)).clear();</span>
+<span class="nc" id="L33">    driver.findElement(By.id(&quot;lastname&quot;)).sendKeys(&quot;G&quot;);</span>
+<span class="nc" id="L34">    driver.findElement(By.id(&quot;utaid&quot;)).clear();</span>
+<span class="nc" id="L35">    driver.findElement(By.id(&quot;utaid&quot;)).sendKeys(&quot;1001552486&quot;);</span>
+<span class="nc" id="L36">    driver.findElement(By.id(&quot;address&quot;)).clear();</span>
+<span class="nc" id="L37">    driver.findElement(By.id(&quot;address&quot;)).sendKeys(&quot;Arlington&quot;);</span>
+<span class="nc" id="L38">    driver.findElement(By.id(&quot;username&quot;)).clear();</span>
+<span class="nc" id="L39">    driver.findElement(By.id(&quot;username&quot;)).sendKeys(&quot;hari&quot;);</span>
+<span class="nc" id="L40">    driver.findElement(By.id(&quot;email&quot;)).clear();</span>
+<span class="nc" id="L41">    driver.findElement(By.id(&quot;email&quot;)).sendKeys(&quot;hari@gmail.com&quot;);</span>
+<span class="nc" id="L42">    driver.findElement(By.id(&quot;password&quot;)).clear();</span>
+<span class="nc" id="L43">    driver.findElement(By.id(&quot;password&quot;)).sendKeys(&quot;Qwerty#123&quot;);</span>
+<span class="nc" id="L44">    driver.findElement(By.id(&quot;phone&quot;)).clear();</span>
+<span class="nc" id="L45">    driver.findElement(By.id(&quot;phone&quot;)).sendKeys(&quot;1234567890&quot;);</span>
+<span class="nc" id="L46">    driver.findElement(By.id(&quot;dlnumber&quot;)).clear();</span>
+<span class="nc" id="L47">    driver.findElement(By.id(&quot;dlnumber&quot;)).sendKeys(&quot;DL12345678&quot;);</span>
+<span class="nc" id="L48">    driver.findElement(By.name(&quot;vnumber&quot;)).clear();</span>
+<span class="nc" id="L49">    driver.findElement(By.name(&quot;vnumber&quot;)).sendKeys(&quot;hg123&quot;);</span>
+<span class="nc" id="L50">    new Select(driver.findElement(By.name(&quot;permit&quot;))).selectByVisibleText(&quot;Premium&quot;);</span>
+<span class="nc" id="L51">    new Select(driver.findElement(By.id(&quot;userrole&quot;))).selectByVisibleText(&quot;Manager&quot;);</span>
+<span class="nc" id="L52">    driver.findElement(By.cssSelector(&quot;td &gt; input[type=\&quot;submit\&quot;]&quot;)).click();</span>
+<span class="nc" id="L53">    driver.findElement(By.name(&quot;username&quot;)).clear();</span>
+<span class="nc" id="L54">    driver.findElement(By.name(&quot;username&quot;)).sendKeys(&quot;hari&quot;);</span>
+<span class="nc" id="L55">    driver.findElement(By.name(&quot;password&quot;)).clear();</span>
+<span class="nc" id="L56">    driver.findElement(By.name(&quot;password&quot;)).sendKeys(&quot;Qwerty#123&quot;);</span>
+<span class="nc" id="L57">    new Select(driver.findElement(By.name(&quot;User&quot;))).selectByVisibleText(&quot;Manager&quot;);</span>
+<span class="nc" id="L58">    driver.findElement(By.name(&quot;submit&quot;)).click();</span>
+<span class="nc" id="L59">    driver.findElement(By.linkText(&quot;Search for users&quot;)).click();</span>
+<span class="nc" id="L60">    driver.findElement(By.name(&quot;submit&quot;)).click();</span>
+<span class="nc" id="L61">    driver.findElement(By.linkText(&quot;Back to Home&quot;)).click();</span>
+<span class="nc" id="L62">    driver.findElement(By.linkText(&quot;Set Spot Unavailable&quot;)).click();</span>
+<span class="nc" id="L63">    driver.findElement(By.name(&quot;parking_Area&quot;)).clear();</span>
+<span class="nc" id="L64">    driver.findElement(By.name(&quot;parking_Area&quot;)).sendKeys(&quot;West Garage Floor 5&quot;);</span>
+<span class="nc" id="L65">    driver.findElement(By.id(&quot;parking_Number&quot;)).clear();</span>
+<span class="nc" id="L66">    driver.findElement(By.id(&quot;parking_Number&quot;)).sendKeys(&quot;5&quot;);</span>
+<span class="nc" id="L67">    driver.findElement(By.name(&quot;membership_type&quot;)).clear();</span>
+<span class="nc" id="L68">    driver.findElement(By.name(&quot;membership_type&quot;)).sendKeys(&quot;basic&quot;);</span>
+<span class="nc" id="L69">    driver.findElement(By.cssSelector(&quot;form[name=\&quot;statusForm\&quot;] &gt; input[type=\&quot;submit\&quot;]&quot;)).click();</span>
+<span class="nc" id="L70">    driver.findElement(By.linkText(&quot;Back to Home&quot;)).click();</span>
+<span class="nc" id="L71">    driver.findElement(By.cssSelector(&quot;input[type=\&quot;submit\&quot;]&quot;)).click();</span>
+<span class="nc" id="L72">  }</span>
+
+  @After
+  public void tearDown() throws Exception {
+<span class="nc" id="L76">    driver.quit();</span>
+<span class="nc" id="L77">    String verificationErrorString = verificationErrors.toString();</span>
+<span class="nc bnc" id="L78" title="All 2 branches missed.">    if (!&quot;&quot;.equals(verificationErrorString)) {</span>
+<span class="nc" id="L79">      fail(verificationErrorString);</span>
+    }
+<span class="nc" id="L81">  }</span>
+
+  private boolean isElementPresent(By by) {
+    try {
+<span class="nc" id="L85">      driver.findElement(by);</span>
+<span class="nc" id="L86">      return true;</span>
+<span class="nc" id="L87">    } catch (NoSuchElementException e) {</span>
+<span class="nc" id="L88">      return false;</span>
+    }
+  }
+
+  private boolean isAlertPresent() {
+    try {
+<span class="nc" id="L94">      driver.switchTo().alert();</span>
+<span class="nc" id="L95">      return true;</span>
+<span class="nc" id="L96">    } catch (NoAlertPresentException e) {</span>
+<span class="nc" id="L97">      return false;</span>
+    }
+  }
+
+  private String closeAlertAndGetItsText() {
+    try {
+<span class="nc" id="L103">      Alert alert = driver.switchTo().alert();</span>
+<span class="nc" id="L104">      String alertText = alert.getText();</span>
+<span class="nc bnc" id="L105" title="All 2 branches missed.">      if (acceptNextAlert) {</span>
+<span class="nc" id="L106">        alert.accept();</span>
+<span class="nc" id="L107">      } else {</span>
+<span class="nc" id="L108">        alert.dismiss();</span>
+      }
+<span class="nc" id="L110">      return alertText;</span>
+    } finally {
+<span class="nc" id="L112">      acceptNextAlert = true;</span>
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span>Merged (30 Apr, 2019 8:33:45 AM)</div></body></html>

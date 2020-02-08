@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>SearchUser.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Merged (30 Apr, 2019 8:33:45 AM)</a> &gt; <a href="../../index.html" class="el_group">car_parking_system</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">controller</a> &gt; <span class="el_source">SearchUser.java</span></div><h1>SearchUser.java</h1><pre class="source lang-java linenums">package controller;
+
+import java.io.IOException;
+import java.util.ArrayList;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+
+import data.UserDaoImple;
+import model.AdminErrorMSGS;
+import model.Parking;
+import model.Revoke;
+import model.USER;
+ 
+
+@WebServlet(&quot;/SearchUser&quot;)
+<span class="fc" id="L22">public class SearchUser extends HttpServlet {</span>
+	private static final long serialVersionUID = 1L;    
+	private void getUserParam (HttpServletRequest request, USER user) {
+<span class="nc" id="L25">	user.setUSER(request.getParameter(&quot;username&quot;),request.getParameter(&quot;password&quot;),request.getParameter(&quot;firstname&quot;),request.getParameter(&quot;lastname&quot;),request.getParameter(&quot;role&quot;),request.getParameter(&quot;phone&quot;),request.getParameter(&quot;email&quot;),request.getParameter(&quot;address&quot;),request.getParameter(&quot;parkingpermittype&quot;),request.getParameter(&quot;vehiclenumber&quot;),request.getParameter(&quot;licensenumber&quot;),request.getParameter(&quot;DateofBirth&quot;));  </span>
+<span class="nc" id="L26">	}</span>
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+<span class="fc" id="L28">		HttpSession session = request.getSession();</span>
+<span class="fc" id="L29">		String action = request.getParameter(&quot;action&quot;);</span>
+<span class="fc" id="L30">		ArrayList&lt;USER&gt; UserInDB = new ArrayList&lt;USER&gt;();</span>
+<span class="fc" id="L31">        UserInDB=UserDaoImple.getUserByuserName1(); </span>
+<span class="fc" id="L32">        session.setAttribute(&quot;COMPANIES&quot;, UserInDB);		</span>
+<span class="fc" id="L33">       getServletContext().getRequestDispatcher(&quot;/ViewUser.jsp&quot;).forward(request, response);</span>
+<span class="fc" id="L34">	}</span>
+ 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+<span class="fc" id="L37">		HttpSession session = request.getSession();</span>
+<span class="fc" id="L38">		String action = request.getParameter(&quot;action&quot;), url=&quot;&quot;;</span>
+<span class="fc" id="L39">		System.out.println(&quot;Hello  I reached here&quot;+action);</span>
+<span class="fc" id="L40">		AdminErrorMSGS adminerrormsges=new AdminErrorMSGS();</span>
+<span class="fc" id="L41">		USER user=new USER();</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">		if(action.equalsIgnoreCase(&quot;unrevoke&quot;)){</span>
+			
+<span class="fc" id="L44">			String username=request.getParameter(&quot;username&quot;);	</span>
+<span class="fc" id="L45">			System.out.println(username);</span>
+<span class="fc" id="L46">			UserDaoImple.UnrevokeUser(username);</span>
+<span class="fc" id="L47">			url=&quot;/AdminHomePage.jsp&quot;;</span>
+<span class="fc" id="L48">			getServletContext().getRequestDispatcher(url).forward(request, response);	</span>
+
+		}
+<span class="fc bfc" id="L51" title="All 2 branches covered.">		if(action.equalsIgnoreCase(&quot;UpdateUser&quot;))			</span>
+		{			
+<span class="fc" id="L53">			user.setFirstname(request.getParameter(&quot;firstname&quot;));</span>
+<span class="fc" id="L54">			user.setLastname(request.getParameter(&quot;lastname&quot;));</span>
+<span class="fc" id="L55">			user.setUsername(request.getParameter(&quot;username&quot;));</span>
+<span class="fc" id="L56">			user.setAddress(request.getParameter(&quot;address&quot;));</span>
+<span class="fc" id="L57">			user.setPassword(request.getParameter(&quot;password&quot;));	</span>
+<span class="fc" id="L58">            user.setRole(request.getParameter(&quot;userrole&quot;));			</span>
+			
+<span class="fc" id="L60">            UserDaoImple.UpdateUser(user);</span>
+<span class="fc" id="L61">			getServletContext().getRequestDispatcher(&quot;/ViewUser.jsp&quot;).forward(request, response);</span>
+			
+			
+		}
+<span class="fc bfc" id="L65" title="All 2 branches covered.">		if (action.equalsIgnoreCase(&quot;saveUser&quot;) ) {  </span>
+			
+			
+<span class="fc" id="L68">			user.setFirstname(request.getParameter(&quot;firstname&quot;));</span>
+<span class="fc" id="L69">			user.setLastname(request.getParameter(&quot;lastname&quot;));</span>
+<span class="fc" id="L70">			user.setUsername(request.getParameter(&quot;username&quot;));</span>
+<span class="fc" id="L71">			user.setAddress(request.getParameter(&quot;address&quot;));</span>
+<span class="fc" id="L72">			user.setPassword(request.getParameter(&quot;password&quot;));	</span>
+<span class="fc" id="L73">            user.setRole(request.getParameter(&quot;userrole&quot;));</span>
+<span class="fc" id="L74">            user.setUtaid(request.getParameter(&quot;utaid&quot;));</span>
+<span class="fc" id="L75">            user.setEmail(request.getParameter(&quot;email&quot;));</span>
+<span class="fc" id="L76">            user.setPhone(request.getParameter(&quot;phone&quot;));</span>
+<span class="fc" id="L77">            user.setLicensenumber(request.getParameter(&quot;dlnumber&quot;));</span>
+<span class="fc" id="L78">            user.setParkingpermittype(request.getParameter(&quot;permit&quot;));</span>
+            
+			
+<span class="fc" id="L81">				UserDaoImple.insertuser(user);</span>
+<span class="fc" id="L82">				getServletContext().getRequestDispatcher(&quot;/login.jsp&quot;).forward(request, response);</span>
+			
+<span class="fc" id="L84">		}</span>
+		
+		else
+		{
+		
+<span class="fc" id="L89">		String username = request.getParameter(&quot;user_name&quot;);</span>
+		
+<span class="fc" id="L91">		session.removeAttribute(&quot;errorMsgs&quot;);</span>
+<span class="fc" id="L92">		user.setUSER(username,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;);</span>
+<span class="fc" id="L93">		user.validateUSER(action,user, adminerrormsges);</span>
+		
+<span class="fc" id="L95">		ArrayList&lt;USER&gt; UserInDB = new ArrayList&lt;USER&gt;();</span>
+<span class="pc bpc" id="L96" title="1 of 2 branches missed.">		if (!adminerrormsges.getErrorMsg().equals(&quot;&quot;)) {// if error messages</span>
+<span class="nc" id="L97">			getUserParam(request,user);</span>
+<span class="nc" id="L98">			session.setAttribute(&quot;errorMsgs&quot;, adminerrormsges);</span>
+<span class="nc" id="L99">			url=&quot;/SearchUser.jsp&quot;;</span>
+<span class="nc" id="L100">			getServletContext().getRequestDispatcher(url).forward(request, response);</span>
+<span class="nc" id="L101">		}</span>
+		else {
+<span class="fc" id="L103">			session.setAttribute(&quot;USER&quot;, user);</span>
+<span class="fc" id="L104">			UserInDB=UserDaoImple.getUserByuserName(username);</span>
+<span class="fc bfc" id="L105" title="All 2 branches covered.">			if(UserInDB.isEmpty())</span>
+			{ 
+<span class="fc" id="L107">				url=&quot;/SearchUser.jsp&quot;;</span>
+<span class="fc" id="L108">				session.setAttribute(&quot;bigerror&quot;, &quot;User Not Found!! Please try again.&quot;);</span>
+<span class="nc" id="L109">				getServletContext().getRequestDispatcher(url).forward(request, response);</span>
+<span class="nc" id="L110">			}</span>
+			else{
+
+<span class="fc" id="L113">			session.setAttribute(&quot;user&quot;, UserInDB);</span>
+<span class="fc" id="L114">			session.setAttribute(&quot;errorMsgs&quot;, adminerrormsges);</span>
+<span class="fc" id="L115">			url=&quot;/UpdateUser.jsp&quot;;</span>
+<span class="fc" id="L116">			getServletContext().getRequestDispatcher(url).forward(request, response);</span>
+			}
+		}
+	
+		
+		
+		   	
+		}
+
+<span class="fc" id="L125">		}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span>Merged (30 Apr, 2019 8:33:45 AM)</div></body></html>

@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>Parking.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Merged (30 Apr, 2019 8:33:45 AM)</a> &gt; <a href="../../index.html" class="el_group">car_parking_system</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">model</a> &gt; <span class="el_source">Parking.java</span></div><h1>Parking.java</h1><pre class="source lang-java linenums">package model;
+import java.io.Serializable;
+import model.ParkingErrorMsgs;
+
+<span class="fc" id="L5">public class Parking implements Serializable{</span>
+	private static final long serialVersionUID = 3L;
+<span class="fc" id="L7">	private String parking_area = &quot;&quot;;</span>
+<span class="fc" id="L8">	private String capacity = &quot;&quot;;</span>
+<span class="fc" id="L9">	private String floor = &quot;&quot;;</span>
+<span class="fc" id="L10">	private String type = &quot;&quot;;</span>
+<span class="fc" id="L11">	private String cart = &quot;&quot;;</span>
+<span class="fc" id="L12">	private String camera = &quot;&quot;;</span>
+<span class="fc" id="L13">	private String history = &quot;&quot;; </span>
+
+	public void setParking (String parking_area, String capacity,String floor, String type, String cart, String camera, String history) {
+<span class="fc" id="L16">		setParking_area(parking_area);</span>
+<span class="fc" id="L17">		setCapacity(capacity);</span>
+<span class="fc" id="L18">		setFloor(floor);</span>
+<span class="fc" id="L19">		setType(type);</span>
+<span class="fc" id="L20">		setCart(cart);</span>
+<span class="fc" id="L21">		setCamera(camera);</span>
+<span class="fc" id="L22">		setHistory(history);</span>
+<span class="fc" id="L23">	} </span>
+
+	public String getParking_area() {
+<span class="fc" id="L26">		return parking_area;</span>
+	}
+
+	public void setParking_area(String parking_area) {
+<span class="fc" id="L30">		this.parking_area = parking_area;</span>
+<span class="fc" id="L31">	}</span>
+
+	public String getCapacity() {
+<span class="fc" id="L34">		return capacity;</span>
+	}
+
+	public void setCapacity(String capacity) {
+<span class="fc" id="L38">		this.capacity = capacity;</span>
+<span class="fc" id="L39">	}</span>
+
+	public String getFloor() {
+<span class="fc" id="L42">		return floor;</span>
+	}
+
+	public void setFloor(String floor) {
+<span class="fc" id="L46">		this.floor = floor;</span>
+<span class="fc" id="L47">	}</span>
+
+	public String getType() {
+<span class="fc" id="L50">		return type;</span>
+	}
+
+	public void setType(String type) {
+<span class="fc" id="L54">		this.type = type;</span>
+<span class="fc" id="L55">	}</span>
+
+	public String getCart() {
+<span class="fc" id="L58">		return cart;</span>
+	}
+
+	public void setCart(String cart) {
+<span class="fc" id="L62">		this.cart = cart;</span>
+<span class="fc" id="L63">	}</span>
+
+	public String getCamera() {
+<span class="fc" id="L66">		return camera;</span>
+	}
+
+	public void setCamera(String camera) {
+<span class="fc" id="L70">		this.camera = camera;</span>
+<span class="fc" id="L71">	}</span>
+
+	public String getHistory() {
+<span class="fc" id="L74">		return history;</span>
+	}
+
+	public void setHistory(String history) {
+<span class="fc" id="L78">		this.history = history;</span>
+<span class="fc" id="L79">	}</span>
+	
+	public void validateParking (String action, Parking parking, ParkingErrorMsgs errorMsgs){
+		
+<span class="fc bfc" id="L83" title="All 2 branches covered.">		if (action.equals(&quot;saveParking&quot;)) {</span>
+<span class="fc" id="L84">			errorMsgs.setParking_areaError(validateParking_area(parking.getParking_area()));</span>
+<span class="fc" id="L85">			errorMsgs.setCapacityError(validateCapacity(parking.getCapacity()));</span>
+<span class="fc" id="L86">			errorMsgs.setFloorError(validateFloor(parking.getFloor()));</span>
+<span class="fc" id="L87">			errorMsgs.setTypeError(validateType(parking.getType()));</span>
+<span class="fc" id="L88">			errorMsgs.setCartError(validateCart(parking.getCart()));</span>
+<span class="fc" id="L89">			errorMsgs.setCameraError(validateCamera(parking.getCamera()));</span>
+<span class="fc" id="L90">			errorMsgs.setHistoryError(validateHistory(parking.getHistory()));</span>
+<span class="fc" id="L91">			errorMsgs.setErrorMsg(action);</span>
+		}
+<span class="fc" id="L93">	}</span>
+	
+	private String validateParking_area(String parking_area) {
+<span class="fc" id="L96">		String result=&quot;&quot;;</span>
+<span class="fc bfc" id="L97" title="All 2 branches covered.">		if (!stringSize(parking_area,3,15))</span>
+<span class="fc" id="L98">			result= &quot;Parking Area Name must between 3 and 15 digits&quot;;</span>
+		else
+<span class="fc bfc" id="L100" title="All 2 branches covered.">			if (Character.isLowerCase(parking_area.charAt(0)))</span>
+<span class="fc" id="L101">				result=&quot;Parking Area Name must start with a capital letter&quot;;</span>
+<span class="fc" id="L102">		return result;		</span>
+	} 
+	
+	private String validateCapacity(String capacity) {
+<span class="fc" id="L106">		String result = &quot;&quot;;</span>
+<span class="fc" id="L107">		capacity = capacity.trim();</span>
+<span class="fc bfc" id="L108" title="All 2 branches covered.">		if(capacity.equals(&quot;&quot;)){</span>
+<span class="fc" id="L109">			result = &quot;Capacity cannot be blank&quot;;</span>
+<span class="fc" id="L110">		}</span>
+		else
+<span class="fc bfc" id="L112" title="All 2 branches covered.">			if (!isTextAnInteger(capacity))</span>
+<span class="fc" id="L113">				result=&quot;Capacity must be a number&quot;;</span>
+<span class="fc" id="L114">		return result;</span>
+	}
+	
+	private String validateFloor(String floor) {
+<span class="fc" id="L118">		String result = &quot;&quot;;</span>
+<span class="fc" id="L119">		floor = floor.trim();</span>
+<span class="fc bfc" id="L120" title="All 2 branches covered.">		if(floor.equals(&quot;&quot;)){</span>
+<span class="fc" id="L121">			result = &quot;Floor cannot be blank&quot;;</span>
+		}
+<span class="fc" id="L123">		return result;</span>
+	}
+	
+	private String validateType(String type){
+<span class="fc" id="L127">		String result = &quot;&quot;;</span>
+<span class="fc bfc" id="L128" title="All 6 branches covered.">		if (!type.equals(&quot;Basic&quot;) &amp;&amp; !type.equals(&quot;Premium&quot;) &amp;&amp; !type.equals(&quot;Midrange&quot;) </span>
+<span class="fc bfc" id="L129" title="All 2 branches covered.">				&amp;&amp; !type.equals(&quot;Access&quot;)){</span>
+<span class="fc" id="L130">			result = &quot;Invalid parking Type&quot;;</span>
+		}
+<span class="fc" id="L132">		return result;</span>
+	}
+	
+	private String validateCart(String cart){
+<span class="fc" id="L136">		String result = &quot;&quot;;</span>
+<span class="fc bfc" id="L137" title="All 2 branches covered.">		if(cart.equals(&quot;&quot;)){</span>
+<span class="fc" id="L138">			result = &quot;Fiels cannot be left blank&quot;;</span>
+		}
+<span class="fc" id="L140">		return result;</span>
+		
+	}
+	
+	private String validateCamera(String camera) {
+<span class="fc" id="L145">		String result = &quot;&quot;;</span>
+<span class="fc bfc" id="L146" title="All 2 branches covered.">		if(camera.equals(&quot;&quot;)){</span>
+<span class="fc" id="L147">			result = &quot;Camera cannot be blank&quot;;</span>
+		}
+<span class="fc" id="L149">		return result;</span>
+	}
+	
+	
+	private String validateHistory(String history) {
+<span class="fc" id="L154">		String result = &quot;&quot;;</span>
+<span class="fc bfc" id="L155" title="All 2 branches covered.">		if(history.equals(&quot;&quot;)){</span>
+<span class="fc" id="L156">			result = &quot;History cannot be blank&quot;;</span>
+		}
+<span class="fc" id="L158">		return result;</span>
+	}
+	
+	
+	private boolean stringSize(String string, int min, int max) {
+<span class="fc bfc" id="L163" title="All 4 branches covered.">		return string.length()&gt;=min &amp;&amp; string.length()&lt;=max;</span>
+	}
+	
+	private boolean isTextAnInteger (String string) {
+        boolean result;
+		try
+        {
+<span class="fc" id="L170">            Long.parseLong(string);</span>
+<span class="fc" id="L171">            result=true;</span>
+<span class="fc" id="L172">        } </span>
+<span class="fc" id="L173">        catch (NumberFormatException e) </span>
+        {
+<span class="fc" id="L175">            result=false;</span>
+        }
+<span class="fc" id="L177">		return result;</span>
+	}	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span>Merged (30 Apr, 2019 8:33:45 AM)</div></body></html>

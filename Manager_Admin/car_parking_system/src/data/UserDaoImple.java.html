@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>UserDaoImple.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Merged (30 Apr, 2019 8:33:45 AM)</a> &gt; <a href="../../index.html" class="el_group">car_parking_system</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">data</a> &gt; <span class="el_source">UserDaoImple.java</span></div><h1>UserDaoImple.java</h1><pre class="source lang-java linenums">package data;
+import java.sql.Connection;
+import model.*;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+
+import model.Parking;
+import model.USER;
+import util.MyConnectionProvider;
+
+
+
+<span class="nc" id="L16"> public class UserDaoImple {</span>
+      static Connection con;
+              static PreparedStatement ps;
+                      
+                           
+	
+	public static ArrayList&lt;USER&gt; getUserByuserName1() {
+		// TODO Auto-generated method stub
+		
+<span class="fc" id="L25">		ArrayList&lt;USER&gt; userListInDB = new ArrayList&lt;USER&gt;();</span>
+<span class="fc" id="L26">		Connection conn = MyConnectionProvider.getDBConnection();	</span>
+		try{
+			
+			
+<span class="fc" id="L30">			ps=conn.prepareStatement(&quot;Select * from user&quot;);	</span>
+<span class="fc" id="L31">				ResultSet rs=ps.executeQuery();	</span>
+<span class="fc bfc" id="L32" title="All 2 branches covered.">				   while(rs.next()){</span>
+<span class="fc" id="L33">			        USER user =new USER();		   </span>
+<span class="fc" id="L34">				   user.setUsername(rs.getString(1));</span>
+<span class="fc" id="L35">				   user.setPassword(rs.getString(2));</span>
+<span class="fc" id="L36">				   user.setFirstname(rs.getString(3));</span>
+<span class="fc" id="L37">				   user.setLastname(rs.getString(4));			   </span>
+<span class="fc" id="L38">				   user.setRole(rs.getString(5));</span>
+<span class="fc" id="L39">				   user.setPhone(rs.getString(6));</span>
+<span class="fc" id="L40">				   user.setEmail(rs.getString(7));</span>
+<span class="fc" id="L41">				   user.setAddress(rs.getString(8));			   </span>
+<span class="fc" id="L42">				   user.setParkingpermittype(rs.getString(9));</span>
+<span class="fc" id="L43">				   user.setVehiclenumber(rs.getString(10));</span>
+<span class="fc" id="L44">				   user.setLicensenumber(rs.getString(11));			   </span>
+<span class="fc" id="L45">				   user.setStatus(rs.getString(13));</span>
+<span class="fc" id="L46">				  user.setUtaid(rs.getString(15));</span>
+<span class="fc" id="L47">				  System.out.println(rs.getString(14));</span>
+<span class="fc" id="L48">				   userListInDB.add(user);</span>
+				}
+<span class="fc" id="L50">			}</span>
+<span class="nc" id="L51">			catch(SQLException e){</span>
+<span class="nc" id="L52">				e.printStackTrace();				</span>
+			}finally{
+				try {
+<span class="fc" id="L55">					conn.close();</span>
+<span class="fc" id="L56">					ps.close();</span>
+<span class="pc" id="L57">				} catch (SQLException e) {</span>
+<span class="nc" id="L58">					e.printStackTrace();</span>
+				};
+			}
+<span class="fc" id="L61">		return userListInDB;</span>
+	}
+	
+	public static ArrayList&lt;USER&gt; getUserByPassword(String password) {
+		// TODO Auto-generated method stub
+		
+<span class="fc" id="L67">		ArrayList&lt;USER&gt; userListInDB = new ArrayList&lt;USER&gt;();</span>
+	
+		
+		try{
+<span class="fc" id="L71">			Connection conn = MyConnectionProvider.getDBConnection();	</span>
+			
+<span class="fc" id="L73">	         		ps=conn.prepareStatement(&quot;Select * from user where password LIKE '%&quot;+password+&quot;%' ORDER BY user_name&quot;);	</span>
+<span class="fc" id="L74">			    	ResultSet rs=ps.executeQuery();	</span>
+<span class="fc bfc" id="L75" title="All 2 branches covered.">				   while(rs.next()){</span>
+<span class="fc" id="L76">			        USER user =new USER();		   </span>
+<span class="fc" id="L77">				   user.setUsername(rs.getString(1));</span>
+<span class="fc" id="L78">				   user.setPassword(rs.getString(2));</span>
+<span class="fc" id="L79">				   user.setFirstname(rs.getString(3));</span>
+<span class="fc" id="L80">				   user.setLastname(rs.getString(4));			   </span>
+<span class="fc" id="L81">				   user.setRole(rs.getString(5));</span>
+<span class="fc" id="L82">				   user.setPhone(rs.getString(6));</span>
+<span class="fc" id="L83">				   user.setEmail(rs.getString(7));</span>
+<span class="fc" id="L84">				   user.setAddress(rs.getString(8));			   </span>
+<span class="fc" id="L85">				   user.setParkingpermittype(rs.getString(9));</span>
+<span class="fc" id="L86">				   user.setVehiclenumber(rs.getString(10));</span>
+<span class="fc" id="L87">				   user.setLicensenumber(rs.getString(11));	</span>
+<span class="fc" id="L88">				   user.setDateofBirth(rs.getString(12));</span>
+<span class="fc" id="L89">				   user.setStatus(rs.getString(13));</span>
+<span class="fc" id="L90">				  user.setUtaid(rs.getString(15));</span>
+				   
+				   
+<span class="fc" id="L93">				   userListInDB.add(user);</span>
+		}
+<span class="fc" id="L95">			}</span>
+<span class="nc" id="L96">			catch(Exception e){</span>
+<span class="nc" id="L97">			System.out.println(&quot;Not connected&quot;);	</span>
+			}
+<span class="fc" id="L99">		return userListInDB;</span>
+	}
+	public static ArrayList&lt;USER&gt; getUserByuserName(String username) {
+		// TODO Auto-generated method stub
+		
+<span class="fc" id="L104">		ArrayList&lt;USER&gt; userListInDB = new ArrayList&lt;USER&gt;();</span>
+	
+		
+		try{
+<span class="fc" id="L108">			Connection conn = MyConnectionProvider.getDBConnection();	</span>
+			
+<span class="fc" id="L110">	         		ps=conn.prepareStatement(&quot;Select * from user where user_name LIKE '%&quot;+username+&quot;%' ORDER BY user_name&quot;);	</span>
+<span class="fc" id="L111">			    	ResultSet rs=ps.executeQuery();	</span>
+<span class="fc bfc" id="L112" title="All 2 branches covered.">				   while(rs.next()){</span>
+<span class="fc" id="L113">			        USER user =new USER();		   </span>
+<span class="fc" id="L114">				   user.setUsername(rs.getString(1));</span>
+<span class="fc" id="L115">				   user.setPassword(rs.getString(2));</span>
+<span class="fc" id="L116">				   user.setFirstname(rs.getString(3));</span>
+<span class="fc" id="L117">				   user.setLastname(rs.getString(4));			   </span>
+<span class="fc" id="L118">				   user.setRole(rs.getString(5));</span>
+<span class="fc" id="L119">				   user.setPhone(rs.getString(6));</span>
+<span class="fc" id="L120">				   user.setEmail(rs.getString(7));</span>
+<span class="fc" id="L121">				   user.setAddress(rs.getString(8));			   </span>
+<span class="fc" id="L122">				   user.setParkingpermittype(rs.getString(9));</span>
+<span class="fc" id="L123">				   user.setVehiclenumber(rs.getString(10));</span>
+<span class="fc" id="L124">				   user.setLicensenumber(rs.getString(11));	</span>
+<span class="fc" id="L125">				   user.setDateofBirth(rs.getString(12));</span>
+<span class="fc" id="L126">				   user.setStatus(rs.getString(13));</span>
+<span class="fc" id="L127">				  user.setUtaid(rs.getString(15));</span>
+				   
+				   
+<span class="fc" id="L130">				   userListInDB.add(user);</span>
+		}
+<span class="fc" id="L132">			}</span>
+<span class="nc" id="L133">			catch(Exception e){</span>
+<span class="nc" id="L134">			System.out.println(&quot;Not connected&quot;);	</span>
+			}
+<span class="fc" id="L136">		return userListInDB;</span>
+	}
+	public static ArrayList&lt;USER&gt; LoginUser(String username)
+	{
+<span class="nc" id="L140">		ArrayList&lt;USER&gt; userListInDB = new ArrayList&lt;USER&gt;();</span>
+		try{
+			
+<span class="nc" id="L143">			Connection conn = MyConnectionProvider.getDBConnection();	</span>
+<span class="nc" id="L144">		}catch(Exception e){</span>
+<span class="nc" id="L145">			System.out.println(e);</span>
+		}
+<span class="nc" id="L147">		return userListInDB;</span>
+		
+	}
+
+	public static void UpdateUser(USER user) {
+		
+<span class="fc" id="L153">		Connection conn = MyConnectionProvider.getDBConnection();</span>
+		try {
+		
+<span class="fc" id="L156">			PreparedStatement ps = conn.prepareStatement(&quot;update user set  firstname=?, lastname=?, password=?, phone=? , address=?, role=? where user_name=?&quot;);</span>
+<span class="fc" id="L157">			ps.setString(1,user.getFirstname());</span>
+<span class="fc" id="L158">			ps.setString(2,user.getLastname());</span>
+<span class="fc" id="L159">			ps.setString(3,user.getPassword());</span>
+<span class="fc" id="L160">			ps.setString(4,user.getPhone());			</span>
+<span class="fc" id="L161">			ps.setString(5,user.getAddress());</span>
+<span class="fc" id="L162">			ps.setString(6,user.getRole());</span>
+<span class="fc" id="L163">			ps.setString(7,user.getUsername());</span>
+<span class="fc" id="L164">			ps.executeUpdate();			 </span>
+<span class="pc" id="L165">		} catch (SQLException e) {</span>
+			
+<span class="nc" id="L167">			e.printStackTrace();</span>
+		} 
+		finally {
+			try {
+<span class="fc" id="L171">				conn.close();</span>
+	
+<span class="pc" id="L173">			} catch (SQLException e) {</span>
+<span class="nc" id="L174">				e.printStackTrace();</span>
+			}};
+<span class="fc" id="L176">	} </span>
+	public static void insertuser(USER user) {
+		
+<span class="fc" id="L179">		Connection conn = MyConnectionProvider.getDBConnection();</span>
+<span class="fc" id="L180">		Statement stmt = null;</span>
+<span class="fc" id="L181">		System.out.println(&quot;This fiuq3guirg3qur7q3hris the role&quot;+user.getRole());</span>
+		try {
+			
+<span class="fc" id="L184">			stmt = conn.createStatement();</span>
+<span class="fc" id="L185">			String  Q1=&quot;INSERT INTO user (firstname,lastname, password, phone ,address, user_name,utaid,role,vehiclenumber,licensenumber)&quot;;</span>
+<span class="fc" id="L186">			String insertRevoke = Q1 + &quot; VALUES ('&quot;  </span>
+<span class="fc" id="L187">					+ user.getFirstname()  + &quot;','&quot;</span>
+<span class="fc" id="L188">					+ user.getLastname()  + &quot;','&quot;</span>
+<span class="fc" id="L189">					+ user.getPassword()  + &quot;','&quot;</span>
+<span class="fc" id="L190">					+ user.getPhone()  + &quot;','&quot;</span>
+<span class="fc" id="L191">					+ user.getAddress()  + &quot;','&quot;</span>
+<span class="fc" id="L192">					+ user.getUsername()  + &quot;','&quot;</span>
+<span class="fc" id="L193">					+ user.getUtaid()  + &quot;','&quot;</span>
+<span class="fc" id="L194">					+ user.getRole()  + &quot;','&quot;</span>
+<span class="fc" id="L195">					+ user.getVehiclenumber()  + &quot;','&quot;</span>
+<span class="fc" id="L196">					+ user.getLicensenumber() + &quot;')&quot;;</span>
+<span class="nc" id="L197">			stmt.executeUpdate(insertRevoke);	</span>
+						 
+<span class="pc" id="L199">		} catch (SQLException e) {</span>
+			
+<span class="fc" id="L201">			e.printStackTrace();</span>
+		} 
+		finally {
+			try {
+<span class="fc" id="L205">				conn.close();</span>
+	
+<span class="pc" id="L207">			} catch (SQLException e) {</span>
+<span class="nc" id="L208">				e.printStackTrace(); </span>
+			}};
+<span class="fc" id="L210">	}</span>
+	
+	public static void StoreListinDB(Revoke revoke) {
+<span class="fc" id="L213">		Statement stmt = null;		</span>
+<span class="fc" id="L214">		Connection conn = MyConnectionProvider.getDBConnection();</span>
+		try {
+<span class="fc" id="L216">			stmt = conn.createStatement();</span>
+<span class="fc" id="L217">			String q1=&quot;INSERT INTO USERSTATUS (username,reason)&quot;; </span>
+<span class="fc" id="L218">			String insertRevoke = q1 + &quot; VALUES ('&quot;  </span>
+<span class="fc" id="L219">					+ revoke.getUsername()  + &quot;','&quot;</span>
+<span class="fc" id="L220">					+ revoke.getReason() + &quot;')&quot;;</span>
+<span class="fc" id="L221">			stmt.executeUpdate(insertRevoke);	</span>
+			 
+<span class="pc" id="L223">		} catch (SQLException e) {</span>
+<span class="nc" id="L224">			e.printStackTrace();</span>
+		} finally {
+			try {
+<span class="fc" id="L227">				conn.close();</span>
+	
+<span class="pc" id="L229">			} catch (SQLException e) {</span>
+<span class="nc" id="L230">				e.printStackTrace();</span>
+			}};
+<span class="fc" id="L232">	}</span>
+	public static void UnrevokeUser(String username)
+	{
+		
+<span class="fc" id="L236">		Statement stmt = null;	</span>
+		//String q1=&quot;Delete from  USERSTATUS where username=&quot;
+<span class="fc" id="L238">		Connection conn = MyConnectionProvider.getDBConnection();</span>
+		try {
+<span class="fc" id="L240">			System.out.println(username);</span>
+<span class="fc" id="L241">			ps=conn.prepareStatement(&quot;Delete from  USERSTATUS where username=?;&quot;); </span>
+<span class="fc" id="L242">			ps.setString(1,username);</span>
+<span class="fc" id="L243">			ps.executeUpdate();	</span>
+			 
+<span class="pc" id="L245">		} catch (SQLException e) {</span>
+<span class="nc" id="L246">			e.printStackTrace();</span>
+		} finally {
+			try {
+<span class="fc" id="L249">				conn.close();</span>
+	
+<span class="pc" id="L251">			} catch (SQLException e) {</span>
+<span class="nc" id="L252">				e.printStackTrace();</span>
+			}};
+		
+<span class="fc" id="L255">	}</span>
+
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span>Merged (30 Apr, 2019 8:33:45 AM)</div></body></html>

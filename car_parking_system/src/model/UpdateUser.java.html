@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>UpdateUser.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Imported (15 Apr, 2019 11:01:55 PM)</a> &gt; <a href="../../index.html" class="el_group">car_parking_system</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">model</a> &gt; <span class="el_source">UpdateUser.java</span></div><h1>UpdateUser.java</h1><pre class="source lang-java linenums">package model;
+
+import java.io.Serializable;
+import data.UsersDAO;
+import model.UserErrorMsgs;
+import java.util.*;
+import java.lang.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.Date;
+
+<span class="nc" id="L15">public class UpdateUser implements Serializable{</span>
+	private static final long serialVersionUID = 3L;
+<span class="nc" id="L17">	private String username = &quot;&quot;;</span>
+<span class="nc" id="L18">	private String prefix = &quot;&quot;;</span>
+<span class="nc" id="L19">	private String firstname = &quot;&quot;;</span>
+<span class="nc" id="L20">	private String lastname = &quot;&quot;;</span>
+<span class="nc" id="L21">	private String password = &quot;&quot;;</span>
+<span class="nc" id="L22">	private String cnfpassword = &quot;&quot;;</span>
+<span class="nc" id="L23">	private String phone = &quot;&quot;;</span>
+<span class="nc" id="L24">	private String dob = &quot;&quot;;</span>
+<span class="nc" id="L25">	private String age = &quot;&quot;;</span>
+<span class="nc" id="L26">	private String country = &quot;&quot;;</span>
+<span class="nc" id="L27">	private String address = &quot;&quot;;</span>
+<span class="nc" id="L28">	private String city = &quot;&quot;;</span>
+<span class="nc" id="L29">	private String state = &quot;&quot;;</span>
+<span class="nc" id="L30">	private String pin = &quot;&quot;;</span>
+<span class="nc" id="L31">	private String dlexp = &quot;&quot;;</span>
+<span class="nc" id="L32">	private String dlcountry = &quot;&quot;;</span>
+<span class="nc" id="L33">	private String permittype = &quot;&quot;;</span>
+<span class="nc" id="L34">	private String usertype = &quot;&quot;;</span>
+	
+	public void setUpdateUser (String prefix,String firstname,String lastname,String password,String cnfpassword,String phone,String dob,String age,String country,String address,String city,String state,String pin,String dlexp,String dlcountry,String permittype,String usertype) {
+<span class="nc" id="L37">		setPrefix(prefix);</span>
+<span class="nc" id="L38">		setFirstname(firstname);</span>
+<span class="nc" id="L39">		setLastname(lastname);</span>
+<span class="nc" id="L40">		setPassword(password);</span>
+<span class="nc" id="L41">		setCnfpassword(cnfpassword);</span>
+<span class="nc" id="L42">		setPhone(phone);</span>
+<span class="nc" id="L43">		setDob(dob);</span>
+<span class="nc" id="L44">		setAge(age);</span>
+<span class="nc" id="L45">		setCountry(country);</span>
+<span class="nc" id="L46">		setAddress(address);</span>
+<span class="nc" id="L47">		setCity(city);</span>
+<span class="nc" id="L48">		setState(state);</span>
+<span class="nc" id="L49">		setPin(pin);</span>
+<span class="nc" id="L50">		setDlexp(dlexp);</span>
+<span class="nc" id="L51">		setDlcountry(dlcountry);</span>
+<span class="nc" id="L52">		setPermittype(permittype);</span>
+<span class="nc" id="L53">		setUsertype(usertype);</span>
+		
+<span class="nc" id="L55">	}</span>
+
+	public String getPrefix() {
+<span class="nc" id="L58">		return prefix;</span>
+	}
+
+	public void setPrefix(String prefix) {
+<span class="nc" id="L62">		this.prefix = prefix;</span>
+<span class="nc" id="L63">	}</span>
+
+	public String getFirstname() {
+<span class="nc" id="L66">		return firstname;</span>
+	}
+
+	public void setFirstname(String firstname) {
+<span class="nc" id="L70">		this.firstname = firstname;</span>
+<span class="nc" id="L71">	}</span>
+
+	public String getLastname() {
+<span class="nc" id="L74">		return lastname;</span>
+	}
+
+	public void setLastname(String lastname) {
+<span class="nc" id="L78">		this.lastname = lastname;</span>
+<span class="nc" id="L79">	}</span>
+
+	public String getPassword() {
+<span class="nc" id="L82">		return password;</span>
+	}
+
+	public void setPassword(String password) {
+<span class="nc" id="L86">		this.password = password;</span>
+<span class="nc" id="L87">	}</span>
+
+	public String getCnfpassword() {
+<span class="nc" id="L90">		return cnfpassword;</span>
+	}
+
+	public void setCnfpassword(String cnfpassword) {
+<span class="nc" id="L94">		this.cnfpassword = cnfpassword;</span>
+<span class="nc" id="L95">	}</span>
+
+	public String getPhone() {
+<span class="nc" id="L98">		return phone;</span>
+	}
+
+	public void setPhone(String phone) {
+<span class="nc" id="L102">		this.phone = phone;</span>
+<span class="nc" id="L103">	}</span>
+
+	public String getDob() {
+<span class="nc" id="L106">		return dob;</span>
+	}
+
+	public void setDob(String dob) {
+<span class="nc" id="L110">		this.dob = dob;</span>
+<span class="nc" id="L111">	}</span>
+
+	public String getAge() {
+<span class="nc" id="L114">		return age;</span>
+	}
+
+	public void setAge(String age) {
+<span class="nc" id="L118">		this.age = age;</span>
+<span class="nc" id="L119">	}</span>
+
+	public String getCountry() {
+<span class="nc" id="L122">		return country;</span>
+	}
+
+	public void setCountry(String country) {
+<span class="nc" id="L126">		this.country = country;</span>
+<span class="nc" id="L127">	}</span>
+
+	public String getAddress() {
+<span class="nc" id="L130">		return address;</span>
+	}
+
+	public void setAddress(String address) {
+<span class="nc" id="L134">		this.address = address;</span>
+<span class="nc" id="L135">	}</span>
+
+	public String getCity() {
+<span class="nc" id="L138">		return city;</span>
+	}
+
+	public void setCity(String city) {
+<span class="nc" id="L142">		this.city = city;</span>
+<span class="nc" id="L143">	}</span>
+
+	public String getState() {
+<span class="nc" id="L146">		return state;</span>
+	}
+
+	public void setState(String state) {
+<span class="nc" id="L150">		this.state = state;</span>
+<span class="nc" id="L151">	}</span>
+
+	public String getPin() {
+<span class="nc" id="L154">		return pin;</span>
+	}
+
+	public void setPin(String pin) {
+<span class="nc" id="L158">		this.pin = pin;</span>
+<span class="nc" id="L159">	}</span>
+
+	public String getDlexp() {
+<span class="nc" id="L162">		return dlexp;</span>
+	}
+
+	public void setDlexp(String dlexp) {
+<span class="nc" id="L166">		this.dlexp = dlexp;</span>
+<span class="nc" id="L167">	}</span>
+
+	public String getDlcountry() {
+<span class="nc" id="L170">		return dlcountry;</span>
+	}
+
+	public void setDlcountry(String dlcountry) {
+<span class="nc" id="L174">		this.dlcountry = dlcountry;</span>
+<span class="nc" id="L175">	}</span>
+
+
+
+	public String getPermittype() {
+<span class="nc" id="L180">		return permittype;</span>
+	}
+
+	public void setPermittype(String permittype) {
+<span class="nc" id="L184">		this.permittype = permittype;</span>
+<span class="nc" id="L185">	}</span>
+
+	public String getUsertype() {
+<span class="nc" id="L188">		return usertype;</span>
+	}
+
+	public void setUsertype(String usertype) {
+<span class="nc" id="L192">		this.usertype = usertype;</span>
+<span class="nc" id="L193">	}</span>
+	
+	public void validateUpdateProfile (String action, UpdateUser updateuser, UpdateUserErrorMsgs errorMsgs){
+<span class="nc bnc" id="L196" title="All 2 branches missed.">		if(action.equals(&quot;updateUser&quot;)) {</span>
+			
+<span class="nc" id="L198">			errorMsgs.setFirstNameError(validateFirst_name(action,updateuser.getFirstname()));</span>
+<span class="nc" id="L199">			errorMsgs.setLastNameError(validateLast_name(action,updateuser.getLastname()));</span>
+<span class="nc" id="L200">			errorMsgs.setPasswordError(validatePassword(action, updateuser.getPassword()));</span>
+<span class="nc" id="L201">			errorMsgs.setConfirmPasswordError(validateConfirmPassword(action, updateuser.getCnfpassword(), updateuser.getPassword()));</span>
+<span class="nc" id="L202">			errorMsgs.setPhoneError(validatePhone(action, updateuser.getPhone()));</span>
+<span class="nc" id="L203">			errorMsgs.setDobError(validateDob(action, updateuser.getDob()));</span>
+<span class="nc" id="L204">			errorMsgs.setAgeError(validateAge(action, updateuser.getAge()));</span>
+<span class="nc" id="L205">			errorMsgs.setCountryError(validateCountry(action, updateuser.getCountry()));</span>
+<span class="nc" id="L206">			errorMsgs.setAddressError(validateAddress(action, updateuser.getAddress()));</span>
+<span class="nc" id="L207">			errorMsgs.setCityError(validateCity(action,updateuser.getCity()));</span>
+<span class="nc" id="L208">			errorMsgs.setStateError(validateState(action, updateuser.getState()));</span>
+<span class="nc" id="L209">			errorMsgs.setPinError(validatePin(action, updateuser.getPin()));</span>
+<span class="nc" id="L210">			errorMsgs.setDlExpError(validateDlExp(action, updateuser.getDlexp()));</span>
+<span class="nc" id="L211">			errorMsgs.setDlCountryError(validateDlCountry(action, updateuser.getDlcountry()));</span>
+<span class="nc" id="L212">			errorMsgs.setErrorMsg(action);</span>
+		}
+<span class="nc" id="L214">	}</span>
+	
+	private String validateDlCountry(String action, String dlcountry) {
+<span class="nc" id="L217">		String result = &quot;&quot;;</span>
+<span class="nc" id="L218">		dlcountry = dlcountry.trim();</span>
+<span class="nc bnc" id="L219" title="All 2 branches missed.">		if(dlcountry.equals(&quot;&quot;))</span>
+<span class="nc" id="L220">			result = &quot;Country cannot be blank&quot;;</span>
+<span class="nc bnc" id="L221" title="All 2 branches missed.">		else if(!stringSize(dlcountry,4,45))</span>
+<span class="nc" id="L222">			result = &quot;Country must be between 4 and 45 characters&quot;;</span>
+<span class="nc bnc" id="L223" title="All 2 branches missed.">		else if(!dlcountry.matches(&quot;^[a-zA-Z- ]+$&quot;))</span>
+<span class="nc" id="L224">			result = &quot;Country must contain only characters hyphens and spaces&quot;;</span>
+<span class="nc" id="L225">		return result;</span>
+	}
+	
+	private String validateDlExp(String action, String dlexp) {
+<span class="nc" id="L229">		String result = &quot;&quot;;</span>
+		try {
+			
+<span class="nc" id="L232">			SimpleDateFormat sdf = new SimpleDateFormat(&quot;yyyy-MM-dd&quot;);</span>
+<span class="nc" id="L233">			DateTimeFormatter dtf = DateTimeFormatter.ofPattern(&quot;yyyy-MM-dd&quot;);</span>
+<span class="nc" id="L234">			LocalDate localDate = LocalDate.now();</span>
+<span class="nc" id="L235">			Date date1 = sdf.parse(dlexp);</span>
+<span class="nc" id="L236">			Date date2 = sdf.parse(dtf.format(localDate));</span>
+<span class="nc bnc" id="L237" title="All 2 branches missed.">			if(!dlexp.matches(&quot;^\\d{4}-\\d{2}-\\d{2}$&quot;))</span>
+<span class="nc" id="L238">				result = &quot;Invalid date format&quot;;</span>
+<span class="nc bnc" id="L239" title="All 2 branches missed.">			else if(date1.compareTo(date2) &lt; 0)</span>
+<span class="nc" id="L240">				result = &quot;Date is in the past&quot;;					</span>
+<span class="nc" id="L241">		}</span>
+<span class="nc" id="L242">		catch(Exception e) {</span>
+<span class="nc" id="L243">			System.out.println(e.getMessage());</span>
+<span class="nc" id="L244">			result = &quot;Invalid date format&quot;;</span>
+		}
+<span class="nc" id="L246">		return result;</span>
+		
+	}
+	
+	private String validatePin(String action, String pin) {
+<span class="nc" id="L251">		String result = &quot;&quot;;</span>
+<span class="nc" id="L252">		pin = pin.trim();</span>
+<span class="nc bnc" id="L253" title="All 2 branches missed.">		if(pin.equals(&quot;&quot;))</span>
+<span class="nc" id="L254">			result = &quot;PIN Code cannot be blank&quot;;</span>
+<span class="nc bnc" id="L255" title="All 2 branches missed.">		else if(!stringSize(pin,3,10))</span>
+<span class="nc" id="L256">			result = &quot;PIN Code must be between 3 and 10 characters&quot;;</span>
+<span class="nc" id="L257">		return result;</span>
+	}
+	
+	private String validateState(String action, String state) {
+<span class="nc" id="L261">		String result = &quot;&quot;;</span>
+<span class="nc" id="L262">		state = state.trim();</span>
+<span class="nc bnc" id="L263" title="All 2 branches missed.">		if(state.equals(&quot;&quot;))</span>
+<span class="nc" id="L264">			result = &quot;State cannot be blank&quot;;</span>
+<span class="nc bnc" id="L265" title="All 2 branches missed.">		else if(!stringSize(state,4,45))</span>
+<span class="nc" id="L266">			result = &quot;State must be between 4 and 45 characters&quot;;</span>
+<span class="nc bnc" id="L267" title="All 2 branches missed.">		else if(!state.matches(&quot;^[a-zA-Z- ]+$&quot;))</span>
+<span class="nc" id="L268">			result = &quot;State must contain only characters hyphens and spaces&quot;;</span>
+<span class="nc" id="L269">		return result;</span>
+	}
+	
+	private String validateCity(String action, String city) {
+<span class="nc" id="L273">		String result = &quot;&quot;;</span>
+<span class="nc" id="L274">		city = city.trim();</span>
+<span class="nc bnc" id="L275" title="All 2 branches missed.">		if(city.equals(&quot;&quot;))</span>
+<span class="nc" id="L276">			result = &quot;City cannot be blank&quot;;</span>
+<span class="nc bnc" id="L277" title="All 2 branches missed.">		else if(!stringSize(city,4,45))</span>
+<span class="nc" id="L278">			result = &quot;City must be between 4 and 45 characters&quot;;</span>
+<span class="nc bnc" id="L279" title="All 2 branches missed.">		else if(!city.matches(&quot;^[a-zA-Z- ]+$&quot;))</span>
+<span class="nc" id="L280">			result = &quot;City must contain only characters hyphens and spaces&quot;;</span>
+<span class="nc" id="L281">		return result;</span>
+	}
+	
+	private String validateAddress(String action, String address) {
+<span class="nc" id="L285">		String result = &quot;&quot;;</span>
+<span class="nc" id="L286">		address = address.trim();</span>
+<span class="nc bnc" id="L287" title="All 2 branches missed.">		if(address.equals(&quot;&quot;))</span>
+<span class="nc" id="L288">			result = &quot;Address cannot be blank&quot;;</span>
+<span class="nc bnc" id="L289" title="All 2 branches missed.">		else if(!stringSize(address,3,45))</span>
+<span class="nc" id="L290">			result = &quot;Address must be between 4 and 45 characters&quot;;</span>
+<span class="nc bnc" id="L291" title="All 2 branches missed.">		else if(!address.matches(&quot;^[0-9a-zA-Z- '/,]+$&quot;))</span>
+<span class="nc" id="L292">			result = &quot;Address must contain only characters hyphens spaces and /&quot;;</span>
+<span class="nc" id="L293">		return result;</span>
+	}
+	
+	private String validateCountry(String action, String country) {
+<span class="nc" id="L297">		String result = &quot;&quot;;</span>
+<span class="nc" id="L298">		country = country.trim();</span>
+<span class="nc bnc" id="L299" title="All 2 branches missed.">		if(country.equals(&quot;&quot;))</span>
+<span class="nc" id="L300">			result = &quot;Country cannot be blank&quot;;</span>
+<span class="nc bnc" id="L301" title="All 2 branches missed.">		else if(!stringSize(country,4,45))</span>
+<span class="nc" id="L302">			result = &quot;Country must be between 4 and 45 characters&quot;;</span>
+<span class="nc bnc" id="L303" title="All 2 branches missed.">		else if(!country.matches(&quot;^[a-zA-Z- ]+$&quot;))</span>
+<span class="nc" id="L304">			result = &quot;Country must contain only characters hyphens and spaces&quot;;</span>
+<span class="nc" id="L305">		return result;</span>
+	}
+	
+	private String validateAge(String action, String age) {
+<span class="nc" id="L309">		String result = &quot;&quot;;</span>
+<span class="nc bnc" id="L310" title="All 2 branches missed.">		if(age.equals(&quot;&quot;)) {</span>
+<span class="nc" id="L311">			age=&quot;10&quot;;</span>
+<span class="nc" id="L312">			result = &quot;Age cannot be blank&quot;;</span>
+<span class="nc" id="L313">		}</span>
+<span class="nc bnc" id="L314" title="All 2 branches missed.">		else if(Integer.parseInt(age)&lt;18)</span>
+<span class="nc" id="L315">			result = &quot;Age must be 18 or older&quot;;</span>
+<span class="nc" id="L316">		return result;</span>
+	}
+	
+	private String validateDob(String action, String dob){
+<span class="nc" id="L320">		String result = &quot;&quot;;</span>
+		try {
+			
+<span class="nc" id="L323">			SimpleDateFormat sdf = new SimpleDateFormat(&quot;yyyy-MM-dd&quot;);</span>
+<span class="nc" id="L324">			DateTimeFormatter dtf = DateTimeFormatter.ofPattern(&quot;yyyy-MM-dd&quot;);</span>
+<span class="nc" id="L325">			LocalDate localDate = LocalDate.now();</span>
+<span class="nc" id="L326">			Date date1 = sdf.parse(dob);</span>
+<span class="nc" id="L327">			Date date2 = sdf.parse(dtf.format(localDate));</span>
+<span class="nc" id="L328">			System.out.println(&quot;dob:&quot;+dob);</span>
+<span class="nc" id="L329">			System.out.println(dob.matches(&quot;^\\d{4}-\\d{2}-\\d{2}$&quot;));</span>
+<span class="nc bnc" id="L330" title="All 2 branches missed.">			if(!dob.matches(&quot;^\\d{4}-\\d{2}-\\d{2}$&quot;))</span>
+<span class="nc" id="L331">				result = &quot;Invalid date format&quot;;</span>
+<span class="nc bnc" id="L332" title="All 2 branches missed.">			else if(date1.compareTo(date2) &gt; 0)</span>
+<span class="nc" id="L333">				result = &quot;Date is in future&quot;;					</span>
+<span class="nc" id="L334">		}</span>
+<span class="nc" id="L335">		catch(Exception e) {</span>
+<span class="nc" id="L336">			System.out.println(e.getMessage());</span>
+<span class="nc" id="L337">			result = &quot;Invalid date format&quot;;</span>
+		}
+<span class="nc" id="L339">		return result;</span>
+		
+	}
+	
+	private String validateFirst_name(String action, String firstname) {
+<span class="nc" id="L344">		String result = &quot;&quot;;</span>
+<span class="nc" id="L345">		firstname = firstname.trim();</span>
+<span class="nc bnc" id="L346" title="All 2 branches missed.">		if(!stringSize(firstname,3,45))</span>
+<span class="nc" id="L347">			result = &quot;First Name must be between 3 and 45 characters&quot;;</span>
+<span class="nc bnc" id="L348" title="All 2 branches missed.">		else if(!firstname.matches(&quot;^[a-zA-Z]+$&quot;))</span>
+<span class="nc" id="L349">			result = &quot;First Name must contain only characters&quot;;</span>
+<span class="nc" id="L350">		return result;</span>
+	}
+	
+	public String validateLast_name(String action, String lastname) {
+<span class="nc" id="L354">		String result = &quot;&quot;;</span>
+<span class="nc" id="L355">		lastname = lastname.trim();</span>
+<span class="nc bnc" id="L356" title="All 2 branches missed.">		if(!stringSize(lastname,3,45))</span>
+<span class="nc" id="L357">			result = &quot;Last Name must be between 3 and 45 characters&quot;;</span>
+<span class="nc bnc" id="L358" title="All 2 branches missed.">		else if(!lastname.matches(&quot;^[a-zA-Z]+$&quot;))</span>
+<span class="nc" id="L359">			result = &quot;Last Name must contain only characters&quot;;</span>
+<span class="nc" id="L360">		return result;</span>
+	}
+	
+	public String validatePassword(String action, String password) {
+<span class="nc" id="L364">		String result = &quot;&quot;;</span>
+<span class="nc" id="L365">		password = password.trim();</span>
+<span class="nc bnc" id="L366" title="All 2 branches missed.">		if(password.length()&lt;6)</span>
+<span class="nc" id="L367">			result = &quot;Password must be atleast 6 characters long&quot;;</span>
+<span class="nc bnc" id="L368" title="All 2 branches missed.">		else if(!password.matches(&quot;^(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%^&amp;+=])(?=\\S+$).{6,}$&quot;))</span>
+<span class="nc" id="L369">			result = &quot;Password must contain atleast one digit one lower case letter one upper case letter and one special character&quot;;</span>
+<span class="nc" id="L370">		return result;</span>
+	}
+	
+	public String validateConfirmPassword(String action, String cnfpassword, String password) {
+<span class="nc" id="L374">		String result = &quot;&quot;;</span>
+<span class="nc" id="L375">		cnfpassword = cnfpassword.trim();</span>
+<span class="nc bnc" id="L376" title="All 2 branches missed.">		if(!cnfpassword.equals(password))</span>
+<span class="nc" id="L377">			result = &quot;Passwords do not match&quot;;</span>
+<span class="nc" id="L378">		return result;</span>
+	}
+	
+	public String validatePhone(String action, String phone) {
+<span class="nc" id="L382">		String result = &quot;&quot;;</span>
+<span class="nc bnc" id="L383" title="All 2 branches missed.">		if(phone.length()!=10) {</span>
+<span class="nc" id="L384">			result = &quot;Phone number must exactly be 10 digits&quot;;</span>
+		}
+<span class="nc" id="L386">		return result;</span>
+	}
+	
+	private boolean stringSize(String string, int min, int max) {
+<span class="nc bnc" id="L390" title="All 4 branches missed.">		return string.length()&gt;=min &amp;&amp; string.length()&lt;=max;</span>
+	}
+
+	public String getUsername() {
+<span class="nc" id="L394">		return username;</span>
+	}
+
+	public void setUsername(String username) {
+<span class="nc" id="L398">		this.username = username;</span>
+<span class="nc" id="L399">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span>Imported (15 Apr, 2019 11:01:55 PM)</div></body></html>

@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>USER.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Merged (30 Apr, 2019 8:33:45 AM)</a> &gt; <a href="../../index.html" class="el_group">car_parking_system</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">model</a> &gt; <span class="el_source">USER.java</span></div><h1>USER.java</h1><pre class="source lang-java linenums">package model;
+
+
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+
+
+<span class="fc" id="L10">public class USER {</span>
+	private String username;
+	private String password;
+	private String firstname;
+	private String lastname;
+	private String role;
+	private String phone;
+	private String email;
+	private String address;
+	private String parkingpermittype;
+	private String vehiclenumber;
+	private String licensenumber;
+	private String DateofBirth;
+	private String status;
+	private String noshow;
+	private  String utaid;
+	 
+	
+	public String getStatus() {
+<span class="fc" id="L29">		return status;</span>
+	}
+
+
+	public void setStatus(String status) {
+<span class="fc" id="L34">		this.status = status;</span>
+<span class="fc" id="L35">	}</span>
+ 
+
+	public String getNoshow() {
+<span class="nc" id="L39">		return noshow;</span>
+	}
+
+
+	public void setNoshow(String noshow) {
+<span class="nc" id="L44">		this.noshow = noshow;</span>
+<span class="nc" id="L45">	}</span>
+
+
+	public String getUtaid() {
+<span class="fc" id="L49">		return utaid;</span>
+	}
+
+
+	public void setUtaid(String utaid) {
+<span class="fc" id="L54">		this.utaid = utaid;</span>
+<span class="fc" id="L55">	} </span>
+
+
+	public void setUSER (String username, String password,String firstname, String lastname, String role, String phone, String email,String address, String parkingpermittype, String vehiclenumber,String licensenumber, String DateofBirth) {
+<span class="fc" id="L59">		setUsername(username);</span>
+<span class="fc" id="L60">		setPassword(password);</span>
+<span class="fc" id="L61">		setFirstname(firstname);</span>
+<span class="fc" id="L62">		setLastname(lastname);</span>
+<span class="fc" id="L63">		setRole(role);</span>
+<span class="fc" id="L64">		setPhone(phone);</span>
+<span class="fc" id="L65">		setEmail(email);</span>
+<span class="fc" id="L66">		setAddress(address);</span>
+<span class="fc" id="L67">		setParkingpermittype(parkingpermittype);</span>
+<span class="fc" id="L68">		setVehiclenumber(vehiclenumber);</span>
+<span class="fc" id="L69">		setLicensenumber(licensenumber);</span>
+<span class="fc" id="L70">		setDateofBirth(DateofBirth);</span>
+<span class="fc" id="L71">	}</span>
+
+	
+	public String getLicensenumber() {
+<span class="fc" id="L75">		return licensenumber;</span>
+	}
+	public void setLicensenumber(String licensenumber) {
+<span class="fc" id="L78">		this.licensenumber = licensenumber;</span>
+<span class="fc" id="L79">	}</span>
+	public String getUsername() {
+<span class="fc" id="L81">		return username;</span>
+	}
+	public void setUsername(String username) {
+<span class="fc" id="L84">		this.username = username;</span>
+<span class="fc" id="L85">	}</span>
+	public String getPassword() {
+<span class="fc" id="L87">		return password;</span>
+	}
+	public void setPassword(String password) {
+<span class="fc" id="L90">		this.password = password;</span>
+<span class="fc" id="L91">	}</span>
+	public String getFirstname() {
+<span class="fc" id="L93">		return firstname;</span>
+	}
+	public void setFirstname(String firstname) {
+<span class="fc" id="L96">		this.firstname = firstname;</span>
+<span class="fc" id="L97">	}</span>
+	public String getLastname() {
+<span class="fc" id="L99">		return lastname;</span>
+	}
+	public void setLastname(String lastname) {
+<span class="fc" id="L102">		this.lastname = lastname;</span>
+<span class="fc" id="L103">	}</span>
+	public String getRole() {
+<span class="fc" id="L105">		return role;</span>
+	}
+	public void setRole(String role) {
+<span class="fc" id="L108">		this.role = role;</span>
+<span class="fc" id="L109">	}</span>
+	public String getPhone() {
+<span class="fc" id="L111">		return phone;</span>
+	}
+	public void setPhone(String phone) {
+<span class="fc" id="L114">		this.phone = phone;</span>
+<span class="fc" id="L115">	}</span>
+	public String getEmail() {
+<span class="fc" id="L117">		return email;</span>
+	}
+	public void setEmail(String email) {
+<span class="fc" id="L120">		this.email = email;</span>
+<span class="fc" id="L121">	}</span>
+	public String getAddress() {
+<span class="fc" id="L123">		return address;</span>
+	}
+	public void setAddress(String address) {
+<span class="fc" id="L126">		this.address = address;</span>
+<span class="fc" id="L127">	}</span>
+	public String getParkingpermittype() {
+<span class="fc" id="L129">		return parkingpermittype;</span>
+	}
+	public void setParkingpermittype(String parkingpermittype) {
+<span class="fc" id="L132">		this.parkingpermittype = parkingpermittype;</span>
+<span class="fc" id="L133">	}</span>
+	public String getVehiclenumber() {
+<span class="fc" id="L135">		return vehiclenumber;</span>
+	}
+	public void setVehiclenumber(String vehiclenumber) {
+<span class="fc" id="L138">		this.vehiclenumber = vehiclenumber;</span>
+<span class="fc" id="L139">	}</span>
+	
+	
+	
+	public String getDateofBirth() {
+<span class="fc" id="L144">		return DateofBirth;</span>
+	}
+
+	public void setDateofBirth(String dateofBirth) {
+<span class="fc" id="L148">		DateofBirth = dateofBirth;</span>
+<span class="fc" id="L149">	}</span>
+
+	public void validateUSER (String action, USER user, AdminErrorMSGS errMsgs) {
+<span class="fc bfc" id="L152" title="All 2 branches covered.">		if (action.equals(&quot;searchCompany&quot;)) {</span>
+<span class="fc" id="L153">			errMsgs.setUser_nameError(validateUsername(action, username));</span>
+<span class="fc" id="L154">			errMsgs.setErrorMsg(action);				</span>
+<span class="fc" id="L155">		}</span>
+		else
+<span class="fc bfc" id="L157" title="All 2 branches covered.">			if(action.equals(&quot;UpdateUser&quot;)){</span>
+<span class="fc" id="L158">				errMsgs.setUser_nameError(validateUsername(action,user.getUsername()));</span>
+<span class="fc" id="L159">				errMsgs.setPasswordError(validatePassword(action,user.getPassword()));</span>
+<span class="fc" id="L160">				errMsgs.setFirstnameError(validateFirstname(action,user.getFirstname()));</span>
+<span class="fc" id="L161">				errMsgs.setLastnameError(validateLastname(action,user.getLastname()));</span>
+<span class="fc" id="L162">				errMsgs.setPhoneError(validatePhone(action,user.getPhone()));</span>
+<span class="fc" id="L163">				errMsgs.setEmailError(validateEmail(action,user.getEmail()));</span>
+<span class="fc" id="L164">				errMsgs.setAddressError(validateAddress(action,user.getAddress()));</span>
+<span class="fc" id="L165">				errMsgs.setParkingpermittypeError(validateParkingpermittype(action,user.getParkingpermittype()));</span>
+<span class="fc" id="L166">				errMsgs.setVehiclenumberError(validateVehiclenumber(action,user.getVehiclenumber()));</span>
+<span class="fc" id="L167">				errMsgs.setLicensenumberError(validateLicensenumber(action,user.getLicensenumber()));</span>
+<span class="fc" id="L168">				errMsgs.setDateofBirthError(validateDateofBirth(action,user.getDateofBirth()));</span>
+<span class="fc" id="L169">				errMsgs.setErrorMsg(action);</span>
+			}
+<span class="fc" id="L171">	}</span>
+	
+	private String validateVehiclenumber(String action,String num) {
+<span class="fc" id="L174">		String result = &quot;&quot;;</span>
+<span class="fc" id="L175">		num = num.trim();</span>
+<span class="fc bfc" id="L176" title="All 2 branches covered.">		if(num.equals(&quot;&quot;)){</span>
+<span class="fc" id="L177">			result = &quot;Vehicle number cannot be blank&quot;;</span>
+		}
+<span class="fc" id="L179">		return result;</span>
+	}
+	
+	private String validateLicensenumber(String action,String num) {
+<span class="fc" id="L183">		String result = &quot;&quot;;</span>
+<span class="fc" id="L184">		num = num.trim();</span>
+<span class="fc bfc" id="L185" title="All 2 branches covered.">		if(num.equals(&quot;&quot;)){</span>
+<span class="fc" id="L186">			result = &quot;License number cannot be blank&quot;;</span>
+		}
+<span class="fc" id="L188">		return result;</span>
+	}
+	
+	
+	
+	private String validateUsername(String action, String username) {
+<span class="fc" id="L194">		String result=&quot;&quot;;</span>
+<span class="fc bfc" id="L195" title="All 2 branches covered.">		if (username.equals(&quot;&quot;))</span>
+<span class="fc" id="L196">			result=&quot;Username cannot be blank&quot;;</span>
+<span class="fc" id="L197">		return result;</span>
+		
+	}
+	
+	private String validateEmail(String action, String email) {
+<span class="fc" id="L202">		String result=&quot;&quot;;</span>
+<span class="fc bfc" id="L203" title="All 2 branches covered.">		if (email.equals(&quot;&quot;))</span>
+<span class="fc" id="L204">			result=&quot;Email cannot be blank&quot;;</span>
+<span class="fc" id="L205">		return result;</span>
+		
+	}
+	
+	public String validatePassword(String action, String password) {
+<span class="fc" id="L210">		String result = &quot;&quot;;</span>
+<span class="fc" id="L211">		password = password.trim();</span>
+<span class="fc bfc" id="L212" title="All 2 branches covered.">		if(password.length()&lt;6)</span>
+<span class="fc" id="L213">			result = &quot;Password must be atleast 6 characters long&quot;;</span>
+<span class="fc bfc" id="L214" title="All 2 branches covered.">		else if(!password.matches(&quot;^(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%^&amp;+=])(?=\\S+$).{6,}$&quot;))</span>
+<span class="fc" id="L215">			result = &quot;Password must contain atleast one digit one lower case letter one upper case letter and one special character&quot;;</span>
+<span class="fc" id="L216">		return result;</span>
+	}
+	
+	private String validateFirstname(String action, String firstname) {
+<span class="fc" id="L220">		String result = &quot;&quot;;</span>
+<span class="fc" id="L221">		firstname = firstname.trim();</span>
+<span class="fc bfc" id="L222" title="All 2 branches covered.">		if(!stringSize(firstname,3,10))</span>
+<span class="fc" id="L223">			result = &quot;First Name must be between 3 and 10 characters&quot;;</span>
+<span class="fc bfc" id="L224" title="All 2 branches covered.">		else if(!firstname.matches(&quot;^[a-zA-Z]+$&quot;))</span>
+<span class="fc" id="L225">			result = &quot;First Name must contain only characters&quot;;</span>
+<span class="fc" id="L226">		return result;</span>
+	}
+	
+	public String validateLastname(String action, String lastname) {
+<span class="fc" id="L230">		String result = &quot;&quot;;</span>
+<span class="fc" id="L231">		lastname = lastname.trim();</span>
+<span class="fc bfc" id="L232" title="All 2 branches covered.">		if(!stringSize(lastname,3,45))</span>
+<span class="fc" id="L233">			result = &quot;Last Name must be between 3 and 45 characters&quot;;</span>
+<span class="fc bfc" id="L234" title="All 2 branches covered.">		else if(!lastname.matches(&quot;^[a-zA-Z]+$&quot;))</span>
+<span class="fc" id="L235">			result = &quot;Last Name must contain only characters&quot;;</span>
+<span class="fc" id="L236">		return result;</span>
+	}
+	
+	private String validateAddress(String action, String address) {
+<span class="fc" id="L240">		String result = &quot;&quot;;</span>
+<span class="fc" id="L241">		address = address.trim();</span>
+<span class="fc bfc" id="L242" title="All 2 branches covered.">		if(address.equals(&quot;&quot;))</span>
+<span class="fc" id="L243">			result = &quot;Address cannot be blank&quot;;</span>
+<span class="fc bfc" id="L244" title="All 2 branches covered.">		else if(!stringSize(address,3,45))</span>
+<span class="fc" id="L245">			result = &quot;Address must be between 4 and 45 characters&quot;;</span>
+<span class="fc bfc" id="L246" title="All 2 branches covered.">		else if(!address.matches(&quot;^[0-9a-zA-Z- '/,]+$&quot;))</span>
+<span class="fc" id="L247">			result = &quot;Address must contain only characters hyphens spaces and /'&quot;;</span>
+<span class="fc" id="L248">		return result;</span>
+	}
+	
+	public String validatePhone(String action, String phone) {
+<span class="fc" id="L252">		String result = &quot;&quot;;</span>
+<span class="fc bfc" id="L253" title="All 2 branches covered.">		if (phone.equals(&quot;&quot;))</span>
+<span class="fc" id="L254">			result=&quot;Phone number cannot be blank cannot be blank&quot;;</span>
+		
+		else{
+<span class="fc bfc" id="L257" title="All 2 branches covered.">			 if(!isTextAnInteger(phone)){</span>
+<span class="fc" id="L258">				 result = &quot;Phone number must be a number&quot;;</span>
+<span class="fc" id="L259">			 }else{</span>
+<span class="fc bfc" id="L260" title="All 2 branches covered.">			 if(phone.length()!=10) {</span>
+<span class="fc" id="L261">				 result = &quot;Phone number must exactly be 10 digits&quot;;</span>
+			 }
+			 
+		}
+		
+<span class="fc" id="L266">		}return result;</span>
+	}
+	
+	private String validateDateofBirth(String action, String DateofBirth){
+<span class="fc" id="L270">		String result = &quot;&quot;;</span>
+		try {
+			
+<span class="fc" id="L273">			SimpleDateFormat sdf = new SimpleDateFormat(&quot;yyyy-MM-dd&quot;);</span>
+<span class="fc" id="L274">			DateTimeFormatter dtf = DateTimeFormatter.ofPattern(&quot;yyyy-MM-dd&quot;);</span>
+<span class="fc" id="L275">			LocalDate localDate = LocalDate.now();</span>
+<span class="fc" id="L276">			Date date1 = sdf.parse(DateofBirth);</span>
+<span class="fc" id="L277">			Date date2 = sdf.parse(dtf.format(localDate));</span>
+<span class="pc bpc" id="L278" title="1 of 2 branches missed.">			if(!DateofBirth.matches(&quot;^\\d{4}-\\d{2}-\\d{2}$&quot;))</span>
+<span class="nc" id="L279">				result = &quot;Invalid date format&quot;;</span>
+<span class="fc bfc" id="L280" title="All 2 branches covered.">			else if(date1.compareTo(date2) &gt; 0)</span>
+<span class="fc" id="L281">				result = &quot;Date is in future&quot;;					</span>
+<span class="fc" id="L282">		}</span>
+<span class="fc" id="L283">		catch(Exception e) {</span>
+<span class="fc" id="L284">			result = &quot;Invalid date format&quot;;</span>
+		}
+<span class="fc" id="L286">		return result;</span>
+		
+	}
+	private String validateParkingpermittype(String action,String type){
+<span class="fc" id="L290">		String result = &quot;&quot;;</span>
+<span class="fc bfc" id="L291" title="All 6 branches covered.">		if (!type.equals(&quot;basic&quot;) &amp;&amp; !type.equals(&quot;premium&quot;) &amp;&amp; !type.equals(&quot;midrange&quot;) </span>
+<span class="fc bfc" id="L292" title="All 2 branches covered.">				&amp;&amp; !type.equals(&quot;access&quot;)){</span>
+<span class="fc" id="L293">			result = &quot;Invalid parking Type&quot;;</span>
+		}
+<span class="fc" id="L295">		return result;</span>
+	}
+	
+	
+	
+	private boolean stringSize(String string, int min, int max) {
+<span class="fc bfc" id="L301" title="All 4 branches covered.">		return string.length()&gt;=min &amp;&amp; string.length()&lt;=max;</span>
+	}
+	
+	private boolean isTextAnInteger (String string) {
+        boolean result;
+		try
+        {
+<span class="fc" id="L308">            Long.parseLong(string);</span>
+<span class="fc" id="L309">            result=true;</span>
+<span class="fc" id="L310">        } </span>
+<span class="fc" id="L311">        catch (NumberFormatException e) </span>
+        {
+<span class="fc" id="L313">            result=false;</span>
+        }
+<span class="fc" id="L315">		return result;</span>
+	}
+	
+	
+
+
+
+	}
+
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span>Merged (30 Apr, 2019 8:33:45 AM)</div></body></html>

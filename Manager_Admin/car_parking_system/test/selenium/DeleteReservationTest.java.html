@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>DeleteReservationTest.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Merged (30 Apr, 2019 8:33:45 AM)</a> &gt; <a href="../../index.html" class="el_group">car_parking_system</a> &gt; <a href="../index.html" class="el_bundle">test</a> &gt; <a href="index.source.html" class="el_package">selenium</a> &gt; <span class="el_source">DeleteReservationTest.java</span></div><h1>DeleteReservationTest.java</h1><pre class="source lang-java linenums">package selenium;
+
+import java.util.regex.Pattern;
+import java.util.concurrent.TimeUnit;
+import org.junit.*;
+import org.junit.runner.RunWith;
+
+import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.*;
+import org.openqa.selenium.*;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
+import java.util.Properties;
+import java.io.FileInputStream;
+import functions.*;
+import junitparams.FileParameters;
+import junitparams.JUnitParamsRunner;
+
+@RunWith(JUnitParamsRunner.class)
+<span class="nc" id="L20">public class DeleteReservationTest extends Functions {</span>
+  //private WebDriver driver;
+  private String baseUrl;
+<span class="nc" id="L23">  private boolean acceptNextAlert = true;</span>
+<span class="nc" id="L24">  private StringBuffer verificationErrors = new StringBuffer();</span>
+  public static String sAppURL, sSharedUIMapPath; 
+  //public Properties prop;
+ 
+  @Before
+  public void setUp() throws Exception {
+<span class="nc" id="L30">	System.setProperty(&quot;webdriver.firefox.marionette&quot;, &quot;C:\\GeckoSelenium\\geckodriver.exe&quot;);</span>
+<span class="nc" id="L31">    driver = new FirefoxDriver();</span>
+<span class="nc" id="L32">    baseUrl = &quot;http://localhost:8079/&quot;;</span>
+<span class="nc" id="L33">    prop= new Properties();</span>
+    
+<span class="nc" id="L35">    prop.load(new FileInputStream(&quot;./Configuration/Configuration.properties&quot;));</span>
+<span class="nc" id="L36">    sAppURL = prop.getProperty(&quot;sAppURL&quot;);</span>
+<span class="nc" id="L37">    sSharedUIMapPath = prop.getProperty(&quot;SharedUIMap&quot;);</span>
+<span class="nc" id="L38">    prop.load(new FileInputStream(sSharedUIMapPath));</span>
+<span class="nc" id="L39">    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);</span>
+<span class="nc" id="L40">  }</span>
+ 
+  @FileParameters(&quot;src/Excel/DeleteReservation.csv&quot;)
+  @Test
+  public void testDeleteReservation(int testCaseNo, String username, String password,String role, String reservationID) throws Exception {
+<span class="nc" id="L45">    driver.get(sAppURL);</span>
+    /*driver.findElement(By.id(prop.getProperty(&quot;Txt_Login_UserName&quot;))).clear();
+    driver.findElement(By.id(prop.getProperty(&quot;Txt_Login_UserName&quot;))).sendKeys(&quot;sam&quot;);
+    driver.findElement(By.id(prop.getProperty(&quot;Txt_Login_Password&quot;))).clear();
+    driver.findElement(By.id(prop.getProperty(&quot;Txt_Login_Password&quot;))).sendKeys(&quot;Qwerty#123&quot;);
+    new Select(driver.findElement(By.id(prop.getProperty(&quot;Lnk_Login_UserType&quot;)))).selectByVisibleText(&quot;Manager&quot;);
+    driver.findElement(By.id(prop.getProperty(&quot;Btn_Login_Login&quot;))).click();*/
+<span class="nc" id="L52">    Login(driver,username,password,role);</span>
+<span class="nc" id="L53">    driver.findElement(By.linkText(prop.getProperty(&quot;Lnk_ManagerHome_Delete&quot;))).click();</span>
+   /* driver.findElement(By.id(prop.getProperty(&quot;Txt_DeleteSpecificReservation_ID&quot;))).clear();
+    driver.findElement(By.id(prop.getProperty(&quot;Txt_DeleteSpecificReservation_ID&quot;))).sendKeys(&quot;5&quot;);
+    driver.findElement(By.id(prop.getProperty(&quot;Btn_DeleteSpecificReservation_Submit&quot;))).click();*/
+<span class="nc" id="L57">    DeleteSpecificReservation(driver, reservationID);</span>
+<span class="nc" id="L58">    driver.findElement(By.id(prop.getProperty(&quot;Btn_ViewReservations_Find&quot;))).click();</span>
+<span class="nc" id="L59">    driver.findElement(By.linkText(prop.getProperty(&quot;Lnk_ViewReservations_Backtohome&quot;))).click();</span>
+<span class="nc" id="L60">    driver.findElement(By.id(prop.getProperty(&quot;Btn_ManagerHome_Logout&quot;))).click();</span>
+<span class="nc" id="L61">  }</span>
+ 
+  @After
+  public void tearDown() throws Exception {
+<span class="nc" id="L65">    driver.quit();</span>
+<span class="nc" id="L66">    String verificationErrorString = verificationErrors.toString();</span>
+<span class="nc bnc" id="L67" title="All 2 branches missed.">    if (!&quot;&quot;.equals(verificationErrorString)) {</span>
+<span class="nc" id="L68">      fail(verificationErrorString);</span>
+    }
+<span class="nc" id="L70">  }</span>
+
+  private boolean isElementPresent(By by) {
+    try {
+<span class="nc" id="L74">      driver.findElement(by);</span>
+<span class="nc" id="L75">      return true;</span>
+<span class="nc" id="L76">    } catch (NoSuchElementException e) {</span>
+<span class="nc" id="L77">      return false;</span>
+    }
+  }
+
+  private boolean isAlertPresent() {
+    try {
+<span class="nc" id="L83">      driver.switchTo().alert();</span>
+<span class="nc" id="L84">      return true;</span>
+<span class="nc" id="L85">    } catch (NoAlertPresentException e) {</span>
+<span class="nc" id="L86">      return false;</span>
+    }
+  }
+
+  private String closeAlertAndGetItsText() {
+    try {
+<span class="nc" id="L92">      Alert alert = driver.switchTo().alert();</span>
+<span class="nc" id="L93">      String alertText = alert.getText();</span>
+<span class="nc bnc" id="L94" title="All 2 branches missed.">      if (acceptNextAlert) {</span>
+<span class="nc" id="L95">        alert.accept();</span>
+<span class="nc" id="L96">      } else {</span>
+<span class="nc" id="L97">        alert.dismiss();</span>
+      }
+<span class="nc" id="L99">      return alertText;</span>
+    } finally {
+<span class="nc" id="L101">      acceptNextAlert = true;</span>
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span>Merged (30 Apr, 2019 8:33:45 AM)</div></body></html>

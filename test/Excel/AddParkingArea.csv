@@ -1,0 +1,9 @@
+1,sam,Qwerty#123,Manager,meadow Run,10,1,Access,10,10,10,Please correct the following errors,Parking Area Name must start with a capital letter,,,,,,
+2,sam,Qwerty#123,Manager,MR,10,1,Access,10,10,10,Please correct the following errors,Parking Area Name must between 3 and 15 digits,,,,,,
+3,sam,Qwerty#123,Manager,Meadow Run,,1,Access,10,10,10,Please correct the following errors,,Capacity cannot be blank,,,,,
+4,sam,Qwerty#123,Manager,Meadow Run,ten,1,Access,10,10,10,Please correct the following errors,,Capacity must be a number,,,,,
+5,sam,Qwerty#123,Manager,Meadow Run,10,,Access,10,10,10,Please correct the following errors,,,Floor cannot be blank,,,,
+6,sam,Qwerty#123,Manager,Meadow Run,10,1,har,10,10,10,Please correct the following errors,,,,Invalid parking Type,,,
+7,sam,Qwerty#123,Manager,Meadow Run,10,1,Access,,10,10,Please correct the following errors,,,,,Fiels cannot be left blank,,
+8,sam,Qwerty#123,Manager,Meadow Run,10,1,Access,10,,10,Please correct the following errors,,,,,,Camera cannot be blank,
+9,sam,Qwerty#123,Manager,Meadow Run,10,1,Access,10,10,,Please correct the following errors,,,,,,,History cannot be blank

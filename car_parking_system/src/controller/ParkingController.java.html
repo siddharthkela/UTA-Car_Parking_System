@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>ParkingController.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Merged (30 Apr, 2019 8:33:45 AM)</a> &gt; <a href="../../index.html" class="el_group">car_parking_system</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">controller</a> &gt; <span class="el_source">ParkingController.java</span></div><h1>ParkingController.java</h1><pre class="source lang-java linenums">package controller;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import data.ParkingDAO;
+import model.Parking;
+import model.ParkingErrorMsgs;
+
+/**
+ * Servlet implementation class ParkingController
+ */
+@WebServlet(&quot;/ParkingController&quot;)
+<span class="fc" id="L19">public class ParkingController extends HttpServlet {</span>
+	private static final long serialVersionUID = 1L;
+    
+    /**
+     * @see HttpServlet#HttpServlet() 
+     */
+	private void getParkingParam (HttpServletRequest request, Parking parking) {
+<span class="fc" id="L26">		parking.setParking(request.getParameter(&quot;parking_area&quot;),request.getParameter(&quot;capacity&quot;),request.getParameter(&quot;floor&quot;),request.getParameter(&quot;type&quot;),request.getParameter(&quot;cart&quot;),request.getParameter(&quot;camera&quot;),request.getParameter(&quot;history&quot;));  </span>
+<span class="fc" id="L27">	}</span>
+ 
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+<span class="nc" id="L34">		doPost(request,response);</span>
+<span class="nc" id="L35">	}</span>
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+<span class="fc" id="L42">		String action = request.getParameter(&quot;action&quot;), url=&quot;&quot;;</span>
+<span class="fc" id="L43">		HttpSession session = request.getSession();</span>
+		
+<span class="fc" id="L45">		Parking parking = new Parking();</span>
+<span class="fc" id="L46">		ParkingErrorMsgs PerrorMsgs = new ParkingErrorMsgs();</span>
+	
+<span class="pc bpc" id="L48" title="1 of 2 branches missed.">		if (action.equalsIgnoreCase(&quot;saveParking&quot;) ) {  </span>
+<span class="fc" id="L49">			getParkingParam(request,parking);</span>
+<span class="fc" id="L50">			parking.validateParking(action,parking,PerrorMsgs);</span>
+<span class="fc" id="L51">			session.setAttribute(&quot;parking&quot;, parking);</span>
+<span class="fc bfc" id="L52" title="All 2 branches covered.">			if (!PerrorMsgs.getErrorMsg().equals(&quot;&quot;)) {// if error messages</span>
+<span class="fc" id="L53">				getParkingParam(request,parking);</span>
+<span class="fc" id="L54">				session.setAttribute(&quot;errorMsgs&quot;, PerrorMsgs);</span>
+<span class="fc" id="L55">				url=&quot;/formParking.jsp&quot;;</span>
+<span class="fc" id="L56">			}</span>
+			else {// if no error messages
+<span class="fc" id="L58">				ParkingDAO.StoreListinDB(parking);</span>
+	
+<span class="fc" id="L60">				url=&quot;/ManagerHome.jsp&quot;;</span>
+			}
+		}
+<span class="fc" id="L63">		getServletContext().getRequestDispatcher(url).forward(request, response);		</span>
+<span class="fc" id="L64">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span>Merged (30 Apr, 2019 8:33:45 AM)</div></body></html>
